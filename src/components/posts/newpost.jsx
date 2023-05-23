@@ -49,7 +49,7 @@ const NewPost = () => {
         setTitle(e.target.value)
     }
     const handleBodyChange = (e) => {
-        setBody(e.target.value)
+        setBody(e.target.value.replace(/\r?\n/g, '\n'))
     }
     const handleHashtagChange = (e) => {
         setHashtag(e.target.value)
