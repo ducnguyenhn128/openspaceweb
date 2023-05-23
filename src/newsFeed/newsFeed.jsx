@@ -1,6 +1,6 @@
 // This element fetch data to display all posts
 // Option: Display posts from Global or User's Following
-
+// BE: postRouter
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
 import FilterListIcon from '@mui/icons-material/FilterList';
@@ -22,16 +22,17 @@ const NewsFeed = () => {
     // const URL1 = 'http://localhost:8000/post/feed-follow'
     const navigate = useNavigate()
     const [allPosts, setAllPosts] = useState([]) ;
-
+    const [fullname, setFullname] = useState('') ; // user Fullname
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await axios.get(URL, {
                 withCredentials: true,
             })
-            console.log(response.data) 
             // do not delete
+            console.log(response.data) 
             setAllPosts(response.data)
+            // setFullname(response.data.fullname)
         }
         fetchData();
     }, [URL])
