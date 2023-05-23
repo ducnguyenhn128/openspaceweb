@@ -34,9 +34,9 @@ const MyInfo = () => {
                     
                 </div>
                 {/* Form change Infomation */}
-                <Form className='col-6 mx-auto mt-5' >
+                <Form className='col-6 mx-auto my-5' >
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control type="text" placeholder="username" 
+                        <Form.Control type="text" placeholder="Username" 
                             // onChange={handleChange}
                             // value={newPass.currentpass || ''}
                             name='username'
@@ -45,22 +45,16 @@ const MyInfo = () => {
 
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control type="text" placeholder="address" 
+                        <Form.Control type="text" placeholder="Fullname" 
                             // onChange={handleChange}
                             // value={newPass.newpass || ''}
-                            name='address'
+                            name='fullname'
                         />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control as="textarea" rows={3} placeholder="bio" 
-                            // onChange={handleChange}
-                            // value={newPass.confirm || ''}
-                            name='bio'
-                        />
-                    </Form.Group>
 
-                    <Button variant="primary" type="submit">
+
+                    <Button variant="success" type="submit">
                         Save
                     </Button>
                 </Form>
