@@ -40,7 +40,7 @@ const NewsFeed = () => {
     // Render a list: All post in newsfeed
     const newsfeed1 = allPosts.map((el, index) => (
         <li key={index}> <FeedPost info = {el}/> </li>
-      ));
+    ));
     
     // Handle Button Click: switch NewsFeed between Your Following & Globally
     const switchNewsFeed = () => {
