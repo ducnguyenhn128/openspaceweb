@@ -7,15 +7,18 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // import FeedPost from "./homepage";
 
+const URL0 = process.env.REACT_APP_URL0;
+const URL1 = URL0 + '/api/check-login'
+
 const Homepage = () => {
     // const [logInStatus, setLogInState] = useState(false);
-    const URL = 'http://localhost:8000/api/check-login'
+    const URL = URL1
     // First, check log in status
     const navigate = useNavigate();
     useEffect(() => {
         const checkLoginStatus = async () => { 
             try {
-                const response = await axios.get('https://openspacebe.vercel.app/api/check-login', {
+                const response = await axios.get(URL1, {
                     withCredentials: true // with cookie
                 });
                 console.log(response.data)

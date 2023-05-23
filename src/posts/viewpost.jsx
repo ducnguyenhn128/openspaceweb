@@ -1,5 +1,4 @@
 import Button from "react-bootstrap/esm/Button";
-import './styles.css'
 import './comment'
 import UserComment from "./comment";
 import YourComment from "./yourComment";
@@ -7,10 +6,13 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Header from '../header'
+import './styles.css'
+
+const URL0 = process.env.REACT_APP_URL0;
 
 const ViewPost = () => {
     const {id} = useParams();
-    const URL = 'https://openspacebe.vercel.app/post/' + id ;
+    const URL =  URL0 + '/post/' + id ;
     const [author, setAuthor] = useState('Philippe Bernard Victor Troussier')
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('Lorem ipsum');
@@ -29,7 +31,6 @@ const ViewPost = () => {
             } catch(err) {
                 console.log(err)
             }
-
         }
         fetchData();
     }, [URL])

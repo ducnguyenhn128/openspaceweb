@@ -5,7 +5,9 @@ import Button from 'react-bootstrap/Button';
 import cover from '../photo/logoheader.jpg'
 import { Link } from 'react-router-dom';
 
-// import './styles.css'
+const URL0 = process.env.REACT_APP_URL0;
+const URL = URL0 + '/api/login'
+
 const LogIn = () => {
     const navigate = useNavigate();
     const [newUser, setNewUser] = useState({})
@@ -20,14 +22,13 @@ const LogIn = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         const {username, password} = newUser;
         const formData = {username, password};
         // reset Form 
         setNewUser({})
-        // send data
 
-        fetch('https://openspacebe.vercel.app/api/login', {
+        // send data
+        fetch(URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

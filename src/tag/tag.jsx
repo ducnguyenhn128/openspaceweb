@@ -5,13 +5,13 @@ import FeedPost from '../newsFeed/feedPost';
 
 
 const TagPage = () => {
-    const URL = 'https://openspacebe.vercel.app/'
+    const URL0 = process.env.REACT_APP_URL0;
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(URL);
+                const response = await axios.get(URL0);
                 const data = response.data;
                 setPosts(data)
             } catch(err) {
@@ -20,7 +20,7 @@ const TagPage = () => {
         }
 
         fetchData();
-    }, []);
+    }, [URL0]);
     return (  
         <div>
             <Header />

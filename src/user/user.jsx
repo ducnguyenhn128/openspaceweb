@@ -1,19 +1,19 @@
-import { Link, Route, Routes} from 'react-router-dom';
-import { ProSidebarProvider } from 'react-pro-sidebar'
+import { useEffect, useState } from 'react';
+import { Link, Route, Routes, useParams, useNavigate } from 'react-router-dom';
+import { ProSidebarProvider,  Sidebar, Menu, MenuItem } from 'react-pro-sidebar'
+import { Button } from 'react-bootstrap';
+import axios from 'axios';
+
 import './styles.css'
-import { Sidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import Posts from '../profile/posts';
 import ProfileStas from '../profile/profile';
 import Header from '../header';
 import Follows from '../profile/follows';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Button } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+
+const URL0 = process.env.REACT_APP_URL0;
 const User = () => {
     const {id} = useParams();  //get the ID of the URL
-    const URL = 'https://openspacebe.vercel.app/user/' + id ;
+    const URL = URL0 + '/user/' + id ;
     const navigate = useNavigate()
     // Follow Status
     const [followStatus, setFollowStatus] = useState(true)
@@ -45,7 +45,6 @@ const User = () => {
         fetchData();
     }, [URL, followStatus, navigate])
 
-
     const [user, setUser] = useState()
     const [totalPosts, setTotalPosts] = useState(0);
     const [totalFriends, setTotalFriends] = useState(0);
@@ -60,23 +59,22 @@ const User = () => {
     
     // Handle Follow button
     const handleFollow = async () => {
-        let url2 = 'http://localhost:8000/user/' + id + '/follow';
-        console.log(url2)
+        let URL2 = URL0 +  '/user/' + id + '/follow';
+        // console.log(URL2)
         try { 
-           const response = await axios.post(url2, null, { withCredentials: true }) ;
+           const response = await axios.post(URL2, null, { withCredentials: true }) ;
            if (response.status == '201') {
                 setFollowStatus(followStatus => !followStatus)
            }
-           
         } catch(err) {
             console.error(err);
         }
     }
 
     const handleUnFollow = async() => {
-        let url2 = 'http://localhost:8000/user/' + id + '/follow';
+        let URL2 =  URL0 + '/user/' + id + '/follow';
         try { 
-            const response = await axios.delete(url2, { withCredentials: true }) ;
+            const response = await axios.delete(URL2, { withCredentials: true }) ;
             if (response.status === 204) {
                  setFollowStatus(followStatus => !followStatus)
             }
@@ -128,7 +126,6 @@ const User = () => {
                 </Routes>
             </main>       
         </ProSidebarProvider>
-
     );
 }
  

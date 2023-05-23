@@ -1,18 +1,24 @@
+// This element fetch data to display all posts
+// Option: Display posts from Global or User's Following
+
+import React, {useEffect, useState} from 'react'
+import axios from "axios";
+import FilterListIcon from '@mui/icons-material/FilterList';
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
-import ViewPost from "../posts/viewpost";
+
 import MessageFriend from "./messageFriends";
 import Header from "../header";
-import React, {useEffect, useState} from 'react'
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import FeedPost from "./feedPost";
-import FilterListIcon from '@mui/icons-material/FilterList';
 import PopularTags from "./popularTags";
 import './styles.css'
 
+const URL0 = process.env.REACT_APP_URL0;
 const NewsFeed = () => {
     const [newsFeedGlobal, setNewsFeedGlobal] = useState(true)
-    const URL = newsFeedGlobal ? 'https://openspacebe.vercel.app/post/feed-global' : 'https://openspacebe.vercel.app/post/feed-follow'
+    const URL_GLOBAL = URL0 + '/post/feed-global'  // use it to fetch  all post (global)
+    const URL_FOLLOW = URL0 + '/post/feed-follow'  // use it to fetch from user's following 
+    const URL = newsFeedGlobal ? URL_GLOBAL : URL_FOLLOW
     // const URL1 = 'http://localhost:8000/post/feed-follow'
     const navigate = useNavigate()
     const [allPosts, setAllPosts] = useState([]) ;
@@ -30,7 +36,7 @@ const NewsFeed = () => {
         fetchData();
     }, [URL])
 
-    // Render a list: all post in newsfeed
+    // Render a list: All post in newsfeed
     const newsfeed1 = allPosts.map((el, index) => (
         <li key={index}> <FeedPost info = {el}/> </li>
       ));

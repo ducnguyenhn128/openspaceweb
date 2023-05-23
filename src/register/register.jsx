@@ -2,8 +2,11 @@ import React, {useState} from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
+
 import './styles.css';
 import cover from '../photo/logoheader.jpg'
+
+const URL0 = process.env.REACT_APP_URL0;
 const Register = () => {
     const [newUser, setNewUser] = useState({})
     const navigate = useNavigate();
@@ -26,7 +29,8 @@ const Register = () => {
             // reset Form 
             setNewUser({})
             // send data
-            fetch('https://openspacebe.vercel.app/api/', {
+            const URL1 = URL0 + '/api'
+            fetch(URL1, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
