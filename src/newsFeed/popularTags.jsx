@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
-
+import './styles.css'
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 const PopularTags = (props) => {
     // receive full name form props
-    
     const [taglist, setTaglist] = useState(['sport', 'news'])
+    const navigate = useNavigate();
     useEffect(() => {
         
     }, []);
@@ -13,11 +15,17 @@ const PopularTags = (props) => {
             <hr />
             <p className='mb-3'>Popular Tag</p>
 
-            <div className='d-flex'>
+            <div className='d-flex popular_tag'>
                 {taglist.map(tag => (
-                    <div key={tag} className='bg-secondary text-white p-2 me-2 rounded'>{tag}</div>
-                ))}
 
+                    <Button key={tag}
+                        variant='secondary'
+                        className='me-2'
+                        onClick={() => {navigate(`/tag/${tag}`) }}
+                    >
+                        {tag}
+                    </Button>
+                ))}
             </div>
         </div>
     );
