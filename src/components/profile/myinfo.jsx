@@ -1,16 +1,26 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import './styles.css'
-
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import './styles.css'
+import apiProfile from '../../api/apiProfile';
 
 const MyInfo = () => {
+    const user = useSelector(state => state.user);
+    console.log(user._id)
+    const username = user.username
+    const currentFullname = useSelector(state => state.user.info.fullname)
+    const [fullname, setFullname] = useState(currentFullname)
+    const handleChange = (e) => {
+        setFullname(e.target.value)
+    }
+    const handleSubmit = async () => {
+        const formData = {...user, info: {...user.info, fullname: fullname}}
+        await apiProfile.myinfo(formData, user._id);
+    }
     return (  
         <div className="d-flex">
-            {/* Navigation */}
-            
-            {/* Right column: Profile picture, info ... */}
-            <div className="col-9 bg-light">
+            <div className="col-12 bg-light">
                 {/* Profile picture */}
                 <div className='profile-myInfo-allphoto'>
                     {/* Cover photo */}
@@ -24,30 +34,25 @@ const MyInfo = () => {
                             <div className='profile-myInfo-avt mb-3'>
                             </div>
                             <Button variant='success'>Change Avatar</Button>
-
-                        </div>
-                        
-                        <div>
-                            Full Name
                         </div>
                     </div>
-                    
                 </div>
                 {/* Form change Infomation */}
-                <Form className='col-6 mx-auto my-5' >
+                <Form className='col-6 mx-auto my-5 text-start' onSubmit={handleSubmit}>
+                    <Form.Label>Username</Form.Label>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control type="text" placeholder="Username" 
+                        <Form.Control type="text" placeholder= {username ? username : 'username'} 
                             // onChange={handleChange}
-                            // value={newPass.currentpass || ''}
+                            value={username ? username : 'username'}
                             name='username'
                         />
                     </Form.Group>
 
-
+                    <Form.Label>Full Name</Form.Label>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Control type="text" placeholder="Fullname" 
-                            // onChange={handleChange}
-                            // value={newPass.newpass || ''}
+                            onChange={handleChange}
+                            value={fullname}
                             name='fullname'
                         />
                     </Form.Group>

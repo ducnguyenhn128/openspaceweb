@@ -12,8 +12,13 @@ import Follows from './follows';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../reducers/actions';
+
 const Profile = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -24,7 +29,8 @@ const Profile = () => {
             const user = response.data;
             console.log("Data Response: ", user);
 
-            // set State for user & stats
+            //ACTION set State for user & stats
+            dispatch(updateUser(user))
             setUser(user)
             setTotalPosts(user.stats.posts)
             setTotalFriends(user.stats.friends)
@@ -39,13 +45,15 @@ const Profile = () => {
         fetchData();
     }, [navigate])
 
-    const [user, setUser] = useState()
+    const [user, setUser] = useState();
+    const [stats, setStats] = useState();
     const [totalPosts, setTotalPosts] = useState(0);
     const [totalFriends, setTotalFriends] = useState(0);
     const [totalFollowings, setTotalFollowings] = useState(0);
     const [totalFollowers, setTotalFollowers] = useState(0);
 
-    const URL = 'https://openspacebe.vercel.app/api/profile';
+    const URL0 = process.env.REACT_APP_URL0;
+    const URL = URL0 + '/api/profile'
 
 
     let fullName = "";
@@ -59,7 +67,7 @@ const Profile = () => {
 
 
     return (
-        <ProSidebarProvider totalpost = {totalPosts}>
+        <ProSidebarProvider>
             <Header />
             <Sidebar style={{float: 'left', width: '20%'}}>
                 <Menu>
@@ -72,14 +80,14 @@ const Profile = () => {
                     <MenuItem component={<Link to='./follows'/>}> Follows </MenuItem>
                     <MenuItem component={<Link to='./passwords'/>}> Password </MenuItem>
                     <MenuItem component={<Link to='./privacy'/>}> Privacy </MenuItem>
-                    <MenuItem component={<Link to='./myinfo'/>}> My Info </MenuItem>
+                    <MenuItem component={<Link to='./myinfo'/> }> My Info </MenuItem>
                     
                 </Menu>
             </Sidebar>
             <main>
                 <Routes>
                     <Route path='/*' element={ 
-                        <ProfileStas 
+                        <ProfileStas
                             totalPosts={totalPosts}
                             totalFriends={totalFriends}
                             totalFollowers={totalFollowers}
@@ -90,7 +98,7 @@ const Profile = () => {
                     <Route path='/privacy' element={ <Privacy />} />
                     <Route path='/follows' element={ <Follows/>} />
                     <Route path='/myinfo' element={ <MyInfo />} />
-                    <Route path='/posts' element={ < Posts totalPosts={totalPosts}/>} />
+                    <Route path='/posts' element={ < Posts/>} />
                 </Routes>
             </main>       
         </ProSidebarProvider>
