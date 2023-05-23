@@ -8,6 +8,7 @@ import axios from "axios";
 import FeedPost from "./feedPost";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import PopularTags from "./popularTags";
+import './styles.css'
 
 const NewsFeed = () => {
     const [newsFeedGlobal, setNewsFeedGlobal] = useState(true)
@@ -44,19 +45,11 @@ const NewsFeed = () => {
             <div className="mt-1 d-flex justify-content-between bg-light">
                 {/* Left Column */}
                 <div className='col-2 text-start bg-light left_column '>
-                    {/* <h5 class='mt-2 ms-2'>Popular tags</h5>
-
-                    <div class='mt-2 ms-2 '>
-                        <div><a href="/">#hashtag1</a> </div>
-                        <div><a href="/">#hashtag1</a> </div>
-                        <div><a href="/">#hashtag1</a> </div>
-                    </div> */}
                     <PopularTags />
-
                 </div>
                 
                 {/* Center */}
-                <div className='col-6  bg-light'>
+                <div className='col-12 col-md-6  bg-light'>
                     {/* Write a post */}
                     <div class='mt-3 p-3 bg-white d-flex'>
                         <div className='user-avt'>
