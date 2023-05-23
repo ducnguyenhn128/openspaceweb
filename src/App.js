@@ -22,7 +22,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Homepage />,
+      element: <NewsFeed />,
     },
     {
       path: "/feed",
