@@ -18,7 +18,8 @@ import { updateUser } from '../../reducers/actions';
 const Profile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const URL0 = process.env.REACT_APP_URL0;
+    const URL = URL0 + '/api/profile'
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -43,28 +44,20 @@ const Profile = () => {
             }
         }
         fetchData();
-    }, [navigate])
+    }, [navigate, URL, dispatch ])
 
     const [user, setUser] = useState();
-    const [stats, setStats] = useState();
     const [totalPosts, setTotalPosts] = useState(0);
     const [totalFriends, setTotalFriends] = useState(0);
     const [totalFollowings, setTotalFollowings] = useState(0);
     const [totalFollowers, setTotalFollowers] = useState(0);
 
-    const URL0 = process.env.REACT_APP_URL0;
-    const URL = URL0 + '/api/profile'
-
 
     let fullName = "";
-    if (user && user.username) {
+    if (user && user.fullname) {
         // if people has not set full name, display their username
-        fullName = user.username;
+        fullName = user.fullname;
     }
-    if (user && user.info && user.info.fullname) {
-        fullName = user.info.fullname
-    }
-
 
     return (
         <ProSidebarProvider>

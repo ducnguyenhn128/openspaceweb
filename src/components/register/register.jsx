@@ -24,8 +24,9 @@ const Register = () => {
             alert('Password not match');
         }
         else {
-            const {username, email, password} = newUser;
-            const formData = {username, email, password};
+            const {username, email, password, fullname} = newUser;
+            const formData = {username, email, password, fullname};
+            console.log(formData)
             // reset Form 
             setNewUser({})
             // send data
@@ -61,6 +62,14 @@ const Register = () => {
                         name='username'
                         onChange={handleChange}
                         value = {newUser.username || ''}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Control type="text" placeholder="Fullname" 
+                        name='fullname'
+                        onChange={handleChange}
+                        value = {newUser.fullname || ''}
                     />
                 </Form.Group>
 

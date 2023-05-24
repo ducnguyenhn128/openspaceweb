@@ -12,6 +12,7 @@ import PopularTags from "./popularTags";
 import './styles.css'
 
 import apiNewsFeed from '../../api/post/apiNewsFeed';
+import TopCreators from './topCreators';
 const NewsFeed = () => {
     const [newsFeedGlobal, setNewsFeedGlobal] = useState(true)
     const navigate = useNavigate()
@@ -77,15 +78,7 @@ const NewsFeed = () => {
                 </div>
                 {/* Right column */}
                 <div class='col-2 text-start bg-light right_column mt-2'>
-                    <p>Người liên hệ</p>
-                    {/* Render a list */}
-                    <MessageFriend />
-                    <MessageFriend />
-                    <MessageFriend />
-                    <MessageFriend />
-                    <MessageFriend />
-                    <MessageFriend />
-
+                    <TopCreators />
                 </div>
             </div>  
         </div>

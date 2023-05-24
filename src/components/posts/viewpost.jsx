@@ -32,7 +32,7 @@ const ViewPost = () => {
             }
         }
         fetchData();
-    }, [])
+    }, [id])
     return (  
         <div>
             <Header />
