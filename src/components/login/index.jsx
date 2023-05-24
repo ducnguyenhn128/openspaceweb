@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import cover from '../photo/logoheader.jpg'
 import { Link } from 'react-router-dom';
-
-const URL0 = process.env.REACT_APP_URL0;
-const URL = URL0 + '/api/login'
+import apiLogin from '../../api/apiLogin';
 
 const LogIn = () => {
     const navigate = useNavigate();
@@ -19,35 +17,22 @@ const LogIn = () => {
             [name]: value
         }))
     }
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const {username, password} = newUser;
         const formData = {username, password};
         // reset Form 
         setNewUser({})
 
-        // send data
-        fetch(URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData),
-            credentials: 'include'
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response data
-            console.log(data);
+        try {
+            // Sending API, then navigate if login success
+            await apiLogin(formData);
             navigate('/profile')
-        })
-        .catch(error => {
-            // Handle any errors
+        } catch(err) {
             console.error(error);
             setError('Username or password is incorrect.');
-        });  
-        }
+        } 
+    }
     
     return (
         <div className='SignIn col-4 mx-auto mt-4'>
@@ -81,7 +66,6 @@ const LogIn = () => {
                     <Link to='/register'>Register now</Link>
 
                 </div>
-                {/* <p className='mt-3'>Register now</p> */}
             </Form>
         </div>
     );

@@ -1,21 +1,14 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Header from '../header';
-
-const URL0 = process.env.REACT_APP_URL0;
-const URL1 = URL0 + '/api/logout' 
+import apiLogout from '../../api/apiLogout';
+import Header from '../header'; 
 
 const Logout  = () => {
     const navigate = useNavigate();
     const handleLogout = async () => {
       try {
-        await axios.post(URL1, null, {
-          withCredentials: true,
-        });
-    
-        // Clear the token from client-side storage
+        const response = await apiLogout()
         localStorage.removeItem('token');
     
         // Redirect to the login page or perform other actions
@@ -44,7 +37,6 @@ const Logout  = () => {
       </div>
     );
 }
- 
 export default Logout;
 
 

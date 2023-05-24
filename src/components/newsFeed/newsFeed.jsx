@@ -26,13 +26,18 @@ const NewsFeed = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(URL, {
-                withCredentials: true,
-            })
-            // do not delete
-            console.log(response.data) 
-            setAllPosts(response.data)
-            // setFullname(response.data.fullname)
+            try {
+                const response = await axios.get(URL, {
+                    withCredentials: true,
+                })
+                // do not delete
+                console.log(response.data) 
+                setAllPosts(response.data)
+                // setFullname(response.data.fullname)
+            } catch(err) {
+                console.log(err)
+                navigate('/login')
+            }
         }
         fetchData();
     }, [URL])
