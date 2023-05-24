@@ -7,12 +7,13 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Header from '../header'
 import './styles.css'
+import apiViewPost from "../../api/post/apiViewPost";
 
-const URL0 = process.env.REACT_APP_URL0;
+// const URL0 = process.env.REACT_APP_URL0;
 
 const ViewPost = () => {
     const {id} = useParams();
-    const URL =  URL0 + '/post/' + id ;
+    // const URL =  URL0 + '/post/' + id ;
     const [author, setAuthor] = useState('Philippe Bernard Victor Troussier')
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('Lorem ipsum');
@@ -20,24 +21,22 @@ const ViewPost = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(URL, {
-                    withCredentials: true,
-                })
-                console.log(response.data)  
-                setAuthor(response.data.author)
-                setTitle(response.data.post.title)
-                setBody(response.data.post.body)
-                setCreatedAt(response.data.post.createdAt.slice(0,10))  // handle time
+                const data = await apiViewPost(id) //api
+                console.log(data)  
+                setAuthor(data.author)
+                setTitle(data.post.title)
+                setBody(data.post.body)
+                setCreatedAt(data.post.createdAt.slice(0,10))  // handle time
             } catch(err) {
                 console.log(err)
             }
         }
         fetchData();
-    }, [URL])
+    }, [])
     return (  
         <div>
             <Header />
-            <div className="text-start mx-auto col-4 mt-4 p-3 viewpost">
+            <div className="text-start mx-auto col-6 mt-4 p-3 viewpost">
                 {/* user post */}
                 <div className="d-flex">
                     <div className="user-comment-avt">

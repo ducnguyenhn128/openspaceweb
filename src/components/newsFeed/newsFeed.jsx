@@ -2,45 +2,34 @@
 // Option: Display posts from Global or User's Following
 // BE: postRouter
 import React, {useEffect, useState} from 'react'
-import axios from "axios";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
-
 import MessageFriend from "./messageFriends";
 import Header from "../header";
 import FeedPost from "./feedPost";
 import PopularTags from "./popularTags";
 import './styles.css'
 
-const URL0 = process.env.REACT_APP_URL0;
+import apiNewsFeed from '../../api/post/apiNewsFeed';
 const NewsFeed = () => {
     const [newsFeedGlobal, setNewsFeedGlobal] = useState(true)
-    const URL_GLOBAL = URL0 + '/post/feed-global'  // use it to fetch  all post (global)
-    const URL_FOLLOW = URL0 + '/post/feed-follow'  // use it to fetch from user's following 
-    const URL = newsFeedGlobal ? URL_GLOBAL : URL_FOLLOW
-    // const URL1 = 'http://localhost:8000/post/feed-follow'
     const navigate = useNavigate()
     const [allPosts, setAllPosts] = useState([]) ;
-    const [fullname, setFullname] = useState('') ; // user Fullname
-
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(URL, {
-                    withCredentials: true,
-                })
+                const response = await apiNewsFeed(newsFeedGlobal)  //api
                 // do not delete
                 console.log(response.data) 
                 setAllPosts(response.data)
-                // setFullname(response.data.fullname)
             } catch(err) {
                 console.log(err)
                 navigate('/login')
             }
         }
         fetchData();
-    }, [URL])
+    }, [newsFeedGlobal, navigate])
 
     // Render a list: All post in newsfeed
     const newsfeed1 = allPosts.map((el, index) => (
@@ -56,7 +45,7 @@ const NewsFeed = () => {
             <Header />
             <div className="mt-1 d-flex justify-content-between bg-light">
                 {/* Left Column */}
-                <div className='col-2 text-start bg-light left_column '>
+                <div className='text-start bg-light left_column '>
                     <PopularTags />
                 </div>
                 
@@ -67,10 +56,6 @@ const NewsFeed = () => {
                         <div className='user-avt'>
 
                         </div>
-                        {/* <input 
-                            className='p-1 flex-fill border border-dark-subtle rounded bg-light' 
-                            placeholder="  Write your post"> 
-                        </input> */}
 
                         <Button variant="light" className="flex-fill text-start"  onClick = {() => {navigate('/post')}} >
                             Write your post ...
@@ -106,5 +91,5 @@ const NewsFeed = () => {
         </div>
     );
 }
- 
+
 export default NewsFeed;

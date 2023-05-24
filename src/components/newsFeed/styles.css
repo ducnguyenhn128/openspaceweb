@@ -10,6 +10,8 @@ body {
     background-color: #F8F9FA;
 }
 
+
+
 .message_avt {
     width: 35px;
     height: 35px;
@@ -24,6 +26,13 @@ body {
     background-color: #19871d;
     border-radius: 100%;
     margin-right: 15px;
+}
+.popular_tag {
+    width: 360px;
+}
+.taglist {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .popular_tag a:hover {

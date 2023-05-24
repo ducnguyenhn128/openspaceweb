@@ -1,47 +1,26 @@
 // Post a new article
 import React, {useState, useEffect} from 'react';
 import { Button, Form } from 'react-bootstrap';
-import axios from 'axios';
 import processHashtag from './processHashtagInput';
 import { useNavigate } from 'react-router-dom';
-
 import Header from '../header';
-
-const URL0 = process.env.REACT_APP_URL0;
-
-const URL1 = URL0 +  '/api/profile';
-const URL = URL0 + '/post';
+import apiNewPost from '../../api/post/apiNewPost';
+import apiGetUser from '../../api/user/apiGetUser';
 
 const NewPost = () => {
+    const [fullname, setFullname] = useState('')
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
-    const [fullname, setFullname] = useState('')
     const [hashtag, setHashtag] = useState('')
     const [sampletag, setSampletag] = useState(['news', 'sport'])
     const navigate = useNavigate();
     // Get user Infomatiom
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(URL1, {
-                    withCredentials: true,
-                },
-            );
-            const user = response.data;
-            console.log("Data Response: ", user);
-            // Set FullName
-            if (user.username) {
-                setFullname(user.username)
-            }
-            if (user.info.fullname) {
-                setFullname(user.info.fullname)
-            }
-
-            } catch(err) {
-                console.error(err);
-            }
+        const fetchFullname = async () => {
+            const response = await apiGetUser();  //api
+            setFullname(response.fullname)
         }
-        fetchData();
+        fetchFullname();
     }, [])
     
     // Handle Form
@@ -49,11 +28,11 @@ const NewPost = () => {
         setTitle(e.target.value)
     }
     const handleBodyChange = (e) => {
-        setBody(e.target.value.replace(/\r?\n/g, '\n'))
+        setBody(e.target.value.replace(/\r?\n/g, '\n')) // include "enter new line"
     }
     const handleHashtagChange = (e) => {
         setHashtag(e.target.value)
-        const regex = /^[a-z0-9,]*$/i;
+        const regex = /^[a-z0-9,]*$/i;  //accept only character, number, and comma
         if (regex.test(e.target.value) || e.target.value === '') {
             setHashtag(e.target.value);
         };
@@ -64,25 +43,22 @@ const NewPost = () => {
         e.preventDefault();
         const createdAt = new Date();
         const content = {title, body, createdAt, tagList: sampletag };
-        console.log(content);
+        // console.log(content);
         try {
-            const response = await axios.post(URL, content, {
-                withCredentials: true
-            });
-            console.log(response.data)
+            const response = await apiNewPost(content); //api
+            console.log(response)
         } catch(err) {
             console.log(err);
-            
         }
         // reset the form field
         setTitle('');
         setBody('');
         setHashtag('')
-        navigate('/feed')
+        navigate('/feed') // return to the news feed
     }
 
     return (
-        <div>
+        <div className='mb-4'>
             <Header/>
             <br />
             <h3>New post here</h3>
@@ -111,7 +87,7 @@ const NewPost = () => {
                     />
                 </Form.Group>
                 <p>{sampletag[3]}</p>
-                <p className='text-start fw-lighter bg-light p-3 rounded'>Hashtag seperate by a comma: ex: news, sport ...</p>
+                <p className='text-start fw-lighter bg-light p-3 rounded'>Guideline: Hashtag seperate by a comma: ex: news, sport ...</p>
                 {/* List of tag will be apply */}
                 <div className='d-flex p-3 mb-3 bg-light rounded'>
                     {sampletag.map(tag => (
@@ -128,5 +104,4 @@ const NewPost = () => {
         </div>
     );
 }
- 
 export default NewPost;

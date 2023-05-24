@@ -14,11 +14,12 @@ import Logout from "./components/login/logout";
 import NewPost from "./components/posts/newpost";
 import TagPage from "./components/tag/tag";
 import NewsFeed from './components/newsFeed/newsFeed'
+import Homepage from './components/home/Homepage';
 
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <NewsFeed />,
+      element: <Homepage/>,
     },
     {
       path: "/feed",

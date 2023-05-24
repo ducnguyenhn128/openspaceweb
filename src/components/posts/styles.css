@@ -4,16 +4,12 @@
     background-color: white;
 }
 
-
-
 .viewpost_info a:link {
-    text-decoration: none;
-    
+    text-decoration: none;  
 }
 
 .viewpost_info a:hover {
     text-decoration: none;
-    
 }
 
 .viewpost_info a {

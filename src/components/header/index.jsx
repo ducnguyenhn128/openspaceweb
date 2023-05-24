@@ -7,9 +7,6 @@ import MessageIcon from '@mui/icons-material/Message';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 import favicon from '../photo/logoheader1.png'
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
 
 const Header = () => {
 

@@ -16,5 +16,4 @@ const YourComment = () => {
         </div>
     );
 }
- 
 export default YourComment;

@@ -1,30 +1,26 @@
 import React, {useState, useEffect} from 'react';
 import Header from '../header';
-import axios from 'axios';
 import FeedPost from '../newsFeed/feedPost';
 import { useParams } from 'react-router-dom';
 import './styles.css'
+import apiGetPostsWithTag from '../../api/tag/apiGetPostsWithTag';
 
 const TagPage = () => {
-    const URL0 = process.env.REACT_APP_URL0;
     const {tag} = useParams();
-    const URL = URL0 + '/tag/' + tag ;
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(URL);
-                const data = response.data;
+                const data = await apiGetPostsWithTag(tag);
                 console.log(data)
                 setPosts(data)
             } catch(err) {
                 console.log(err)
             }
         }
-
         fetchData();
-    }, [URL]);
+    }, [tag]);
 
     // Render a list: All post in newsfeed
     const allPostsWithTag = posts.map((el, index) => (
@@ -39,7 +35,6 @@ const TagPage = () => {
         </div>
     );
 }
- 
 export default TagPage;
-
+// This component shows all post with a specific tag
 // do not require login

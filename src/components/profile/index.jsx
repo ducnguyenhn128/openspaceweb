@@ -74,7 +74,7 @@ const Profile = () => {
                     <div style={{width: '100px', height: '100px', backgroundColor: '#6a6b', borderRadius: '100%', margin: '20px auto'}}>
 
                     </div>
-                    <h3>{fullName}</h3>
+                    <h5>{fullName}</h5>
                     <MenuItem component={<Link to='./'/>}> Profile </MenuItem>
                     <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem>
                     <MenuItem component={<Link to='./follows'/>}> Follows </MenuItem>

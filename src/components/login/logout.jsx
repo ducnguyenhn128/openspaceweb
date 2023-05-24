@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import apiLogout from '../../api/apiLogout';
+import apiLogout from '../../api/user/apiLogout';
 import Header from '../header'; 
 
 const Logout  = () => {
