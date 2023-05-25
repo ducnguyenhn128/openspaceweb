@@ -13,9 +13,9 @@ const Header = () => {
   return (
     <div className='home-header p-0'>
       <div className='d-flex justify-content-between bg-success'>
-          <div className=' my-auto text-start home-header-logo '>
+          <div className=' my-auto text-start home-header-logo pb-1'>
               <a href='/feed'>
-                <img src={favicon} alt='logo' style={{height: '60px'}}/>
+                <img src={favicon} alt='logo' style={{height: '56px'}}/>
 
               </a>
               {/* Open Space */}

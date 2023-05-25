@@ -10,7 +10,7 @@ const apiViewPost = async (id) => {
         })
         // console.log(response.data)
         const responseData = await response.data;
-        console.log(responseData)
+        // console.log(responseData)
         return responseData;
         
     } catch(err) {
@@ -19,3 +19,5 @@ const apiViewPost = async (id) => {
 }
 
 export default apiViewPost;
+
+//be: // 4. Get a post by id , postRouter, post.js

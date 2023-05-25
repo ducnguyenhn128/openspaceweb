@@ -1,7 +1,6 @@
 // This element use to render a single feedpost, which will be render on the newsfeed (render a list of posts)
 // This element receive props (data) to render infomation
 import React, {useState} from 'react';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import apiLikePost from '../../api/post/apiLikePost';
 import { useSelector } from 'react-redux';
@@ -17,7 +16,7 @@ const FeedPost = (props) => {
     const time = createdAt && typeof createdAt === 'string' ? createdAt.slice(0, 10) : '';
     const author_page = '/user/' + author;
     const post_link = '/post/' + _id;
-    const userID = useSelector(state => state.user._id)  // client ID
+    const userID = useSelector(state => state.user?._id || '')  // client ID ************ noted
     const formattedBody = body.replace(/\n/g, "<br>"); // format body display right when enter new line
 
     const handleLikeButton = async () => {

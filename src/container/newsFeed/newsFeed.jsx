@@ -1,10 +1,11 @@
 // This element fetch data to display all posts
 // Option: Display posts from Global or User's Following
 // BE: postRouter
-import React, {useEffect, useState} from 'react'
+import React, {Suspense, useEffect, useState} from 'react'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
+// import LazyLoad from 'react-lazyload/'
 import Header from "../header";
 import FeedPost from "./feedPost";
 import PopularTags from "./popularTags";
@@ -12,6 +13,7 @@ import './styles.css'
 
 import apiNewsFeed from '../../api/post/apiNewsFeed';
 import TopCreators from './topCreators';
+import { Spinner } from 'react-bootstrap';
 const NewsFeed = () => {
     const [newsFeedGlobal, setNewsFeedGlobal] = useState(true)
     const navigate = useNavigate()
@@ -73,7 +75,9 @@ const NewsFeed = () => {
 
                     {/* All Posts in News Feed */}
                     <div className='bg-light newsfeed1'>
-                        {newsfeed1}
+                        <Suspense fallback={<Spinner />}>
+                            {newsfeed1}
+                        </Suspense>
                     </div>
                 </div>
                 {/* Right column */}

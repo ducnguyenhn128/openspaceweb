@@ -30,7 +30,7 @@ const PopularTags = (props) => {
             }
         }
         fetchData();
-    }, []);
+    }, [dispatch]);
     return (  
         <div className='mx-auto rounded popular_tag'>
             <h5>{fullname}</h5>

@@ -16,3 +16,4 @@ const processHashtag = (input) => {
 // processHashtag(str)
 
 export default processHashtag
+

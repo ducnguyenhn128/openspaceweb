@@ -9,7 +9,7 @@ const apiGetUser = async () => {
             withCredentials: true,
         });
         const user = response.data;
-        console.log("Data Response: ", user);
+        // console.log("Data Response from apiGetUser: ", user);
 
         // let fullname = user.fullname
         const {_id, username, fullname} = user

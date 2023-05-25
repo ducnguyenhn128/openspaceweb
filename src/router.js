@@ -15,6 +15,8 @@ import NewPost from "./container/posts/newpost";
 import TagPage from "./container/tag/tag";
 import NewsFeed from './container/newsFeed/newsFeed'
 import Homepage from './container/home/Homepage';
+import Demo from './container/newsFeed/DEMO';
+// import ViewPost2 from './container/posts/viewpost2';
 
 const router = createBrowserRouter([
     {
@@ -50,8 +52,8 @@ const router = createBrowserRouter([
       ]
     },
     {
-      path: 'viewpost', // drop
-      element: <ViewPost />  // drop
+      path: 'demo', // drop
+      element: <Demo />  // drop
     },
     {
       path: 'user/:id/*',  //login required
