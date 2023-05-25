@@ -61,8 +61,7 @@ const NewPost = () => {
     return (
         <div className='mb-4'>
             <Header/>
-            <br />
-            <h3>New post here</h3>
+            <h3 style={{marginTop: '80px'}}>NEW POST</h3>
             <h4>{fullname}</h4>
             <Form className='col-6 mx-auto mt-5' onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicPassword">

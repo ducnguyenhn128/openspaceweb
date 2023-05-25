@@ -8,7 +8,6 @@ import Button from "react-bootstrap/esm/Button";
 import Header from "../header";
 import FeedPost from "./feedPost";
 import PopularTags from "./popularTags";
-import { useDispatch } from 'react-redux';
 import './styles.css'
 
 import apiNewsFeed from '../../api/post/apiNewsFeed';
@@ -24,7 +23,7 @@ const NewsFeed = () => {
                 const response = await apiNewsFeed(newsFeedGlobal)  //api
                 // do not delete
                 console.log(response.data) 
-                setAllPosts(response.data)
+                setAllPosts(response.data)  // All Posts in the news feed
             } catch(err) {
                 console.log(err)
                 navigate('/login')

@@ -35,10 +35,12 @@ body {
     margin-right: 15px;
 }
 .popular_tag {
-    width: 360px;
+    /* width: 360px; */
+    width: 23%;
     position: fixed;
     top: 70px;
     padding: 8px 24px;
+    /* border: 1px red solid; */
 }
 
 .popular_tag a:hover {
@@ -74,7 +76,20 @@ body {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 2px 0px;
 }
 
+/* can be delete after 27 05 23 */
+/* Like Button */
+.like_button {
+    display: flex;
+    /* width: 80px; */
+    background-color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+}
 
+.like_button:hover {
+    background-color: rgb(224, 224, 224);
+}
 
 /* Media query for mobile */
 @media only screen and (max-width: 767px) {

@@ -1,20 +1,20 @@
 
-import { RouterProvider, createBrowserRouter} from 'react-router-dom';
-import Register from "./components/register/register";
-import Profile from "./components/profile";
-import Posts from "./components/profile/posts";
-import Follows from "./components/profile/follows";
-import Password from "./components/profile/password";
-import Privacy from "./components/profile/privacy";
-import MyInfo from "./components/profile/myinfo";
-import ViewPost from "./components/posts/viewpost";
-import LogIn from "./components/login";
-import User from "./components/user/user";
-import Logout from "./components/login/logout";
-import NewPost from "./components/posts/newpost";
-import TagPage from "./components/tag/tag";
-import NewsFeed from './components/newsFeed/newsFeed'
-import Homepage from './components/home/Homepage';
+import { createBrowserRouter} from 'react-router-dom';
+import Register from "./container/register/register";
+import Profile from "./container/profile";
+import Posts from "./container/profile/posts";
+import Follows from "./container/profile/follows";
+import Password from "./container/profile/password";
+import Privacy from "./container/profile/privacy";
+import MyInfo from "./container/profile/myinfo";
+import ViewPost from "./container/posts/viewpost";
+import LogIn from "./container/login";
+import User from "./container/user/user";
+import Logout from "./container/login/logout";
+import NewPost from "./container/posts/newpost";
+import TagPage from "./container/tag/tag";
+import NewsFeed from './container/newsFeed/newsFeed'
+import Homepage from './container/home/Homepage';
 
 const router = createBrowserRouter([
     {

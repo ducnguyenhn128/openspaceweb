@@ -1,6 +1,6 @@
 import axios from "axios";
 const URL0 = process.env.REACT_APP_URL0;
-const URL = URL0 + '/post';
+const URL = URL0 + '/post/';
 
 const apiNewPost = async (content) => {
     try {

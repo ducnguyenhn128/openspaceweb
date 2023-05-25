@@ -1,0 +1,13 @@
+/* Like Button */
+.like_button {
+    display: flex;
+    /* width: 80px; */
+    background-color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.like_button:hover {
+    background-color: rgb(224, 224, 224);
+}

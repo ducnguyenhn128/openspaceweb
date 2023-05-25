@@ -1,7 +1,6 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './styles.css'
-import { Outlet } from "react-router-dom";
 import React, { useState } from 'react';
 
 const Password = () => {
