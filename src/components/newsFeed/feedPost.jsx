@@ -19,7 +19,7 @@ const FeedPost = (props) => {
     const post_link = '/post/' + _id;
     const formattedBody = body.replace(/\n/g, "<br>");
     return (  
-        <div className="text-start bg-white p-3 mb-3 border border-white rounded">
+        <div className="newsfeed_post text-start">
             {/* Author && Time && More Setting */}
             <div className="d-flex">
                 <div className="user-comment-avt">

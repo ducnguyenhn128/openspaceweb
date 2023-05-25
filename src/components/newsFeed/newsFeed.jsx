@@ -5,10 +5,10 @@ import React, {useEffect, useState} from 'react'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
-import MessageFriend from "./messageFriends";
 import Header from "../header";
 import FeedPost from "./feedPost";
 import PopularTags from "./popularTags";
+import { useDispatch } from 'react-redux';
 import './styles.css'
 
 import apiNewsFeed from '../../api/post/apiNewsFeed';
@@ -17,6 +17,7 @@ const NewsFeed = () => {
     const [newsFeedGlobal, setNewsFeedGlobal] = useState(true)
     const navigate = useNavigate()
     const [allPosts, setAllPosts] = useState([]) ;
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -43,8 +44,8 @@ const NewsFeed = () => {
     }
     return (
         <div>
-            <Header />
-            <div className="mt-1 d-flex justify-content-between bg-light">
+            <Header className='header'/>
+            <div className="newsfeed_body bg-light">
                 {/* Left Column */}
                 <div className='text-start bg-light left_column '>
                     <PopularTags />
@@ -53,7 +54,7 @@ const NewsFeed = () => {
                 {/* Center */}
                 <div className='col-12 col-md-6  bg-light'>
                     {/* Write a post */}
-                    <div class='mt-3 p-3 bg-white d-flex'>
+                    <div className='post-article'>
                         <div className='user-avt'>
 
                         </div>

@@ -11,9 +11,9 @@ import favicon from '../photo/logoheader1.png'
 const Header = () => {
 
   return (
-    <div class='home-header p-0'>
-      <div class='d-flex justify-content-between bg-success'>
-          <div class='col-2 my-auto text-white'>
+    <div className='home-header p-0'>
+      <div className='d-flex justify-content-between bg-success'>
+          <div className=' my-auto text-start home-header-logo '>
               <a href='/feed'>
                 <img src={favicon} alt='logo' style={{height: '60px'}}/>
 
@@ -21,7 +21,7 @@ const Header = () => {
               {/* Open Space */}
           </div>
 
-          <div class='col-2 my-auto text-white'>
+          <div className='col-2 my-auto text-white'>
               <input 
                 placeholder='Search ...'
                 className='header-search-input'

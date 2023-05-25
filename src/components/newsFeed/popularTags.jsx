@@ -4,11 +4,16 @@ import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import apiCommonTag from '../../api/tag/apiCommonTag';
 import apiGetUser from '../../api/user/apiGetUser';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../reducers/actions';
+
+
 const PopularTags = (props) => {
     // receive full name form props
     const [taglist, setTaglist] = useState(['sport', 'news'])
     const [fullname, setFullname] = useState('Username')
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     useEffect(() => {
         const fetchData = async() => {
             try {
@@ -16,6 +21,9 @@ const PopularTags = (props) => {
                 setTaglist(data1)
 
                 const data2 = await apiGetUser();
+                // await console.log(`data2 : ${data2}`)
+                //ACTION set State for user & stats
+                dispatch(updateUser(data2))
                 setFullname(data2.fullname)
             } catch(err) {
                 console.log(err)
@@ -24,7 +32,7 @@ const PopularTags = (props) => {
         fetchData();
     }, []);
     return (  
-        <div className=' p-4 mx-auto rounded popular_tag'>
+        <div className='mx-auto rounded popular_tag'>
             <h5>{fullname}</h5>
             <hr />
             <p className='mb-3'>Common Tag</p>

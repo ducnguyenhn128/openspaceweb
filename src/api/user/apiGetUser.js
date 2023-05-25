@@ -11,16 +11,10 @@ const apiGetUser = async () => {
         const user = response.data;
         console.log("Data Response: ", user);
 
-        let fullname = user.fullname
-        // Get FullName
-        // if (user.username) {
-        //     fullname = user.username
-        // }
-        // if (user.info.fullname) {
-        //     fullname = user.info.fullname
-        // }
+        // let fullname = user.fullname
+        const {_id, username, fullname} = user
 
-        return {fullname}
+        return {_id, username, fullname}
     } catch(err) {
         console.error(err);
     }

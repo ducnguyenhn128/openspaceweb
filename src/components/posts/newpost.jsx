@@ -16,6 +16,7 @@ const NewPost = () => {
     const navigate = useNavigate();
     // Get user Infomatiom
     useEffect(() => {
+        
         const fetchFullname = async () => {
             const response = await apiGetUser();  //api
             setFullname(response.fullname)
