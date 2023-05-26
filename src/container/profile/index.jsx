@@ -90,7 +90,7 @@ const Profile = () => {
                     <Route path='/passwords' element={ <Password />} />
                     <Route path='/privacy' element={ <Privacy />} />
                     <Route path='/follows' element={ <Follows/>} />
-                    <Route path='/myinfo' element={ <MyInfo />} />
+                    <Route path='/myinfo' user={user} element={ <MyInfo />} />
                     <Route path='/posts' element={ < Posts/>} />
                 </Routes>
             </main>       

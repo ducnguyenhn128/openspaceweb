@@ -1,7 +1,13 @@
 import { UPDATE_USER } from './actions';
 
 const initialState = {
-  user: null
+  user: {
+    username: '',
+    fullname: '',
+    avatar: '',
+    _id: '',
+    email: ''
+  }
 };
 
 const userReducer = (state = initialState, action) => {

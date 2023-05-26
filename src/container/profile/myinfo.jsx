@@ -1,16 +1,20 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef, useState } from 'react';
 import './styles.css'
 import apiProfile from '../../api/apiProfile';
+import apiAvatar from '../../api/user/apiAvatar';
+import { useSelector } from 'react-redux';
 
 const MyInfo = () => {
-    const user = useSelector(state => state.user);
-    console.log(user._id)
-    const username = user.username
-    const currentFullname = useSelector(state => state.user.info.fullname)
-    const [fullname, setFullname] = useState(currentFullname)
+
+    const user = useSelector(state => state.user)
+    console.log(user)
+    const [visible, setVisible] = useState(false)
+    const formRef = useRef(null);
+    
+    // Change infomation 
+    const [fullname, setFullname] = useState('');
     const handleChange = (e) => {
         setFullname(e.target.value)
     }
@@ -18,52 +22,76 @@ const MyInfo = () => {
         const formData = {...user, info: {...user.info, fullname: fullname}}
         await apiProfile.myinfo(formData, user._id);
     }
+    // ====================================================
+    // Change Avatar
+    const handleSubmit2 = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+
+        try {
+            const response = await apiAvatar(formData);
+            console.log(response)
+            // Reset the form fields
+            formRef.current.reset();
+        } catch(err) {
+            console.log(err)
+        }
+    }
+    const openUploadAvt = () => {
+        setVisible(true)
+    }
+    // =====================================================
     return (  
         <div className="d-flex">
-            <div className="col-12 bg-light">
+            <div className="col-4 bg-light p-4">
                 {/* Profile picture */}
                 <div className='profile-myInfo-allphoto'>
-                    {/* Cover photo */}
-                    <div style={{backgroundColor: '#c9ebea', height: '250px'}} className='mx-auto col-12'>
-
-                    </div>
-                    <Button variant='secondary' className='mt-2'>Change Cover photo</Button>
                     {/* Profile picture */}
-                    <div className='d-flex'>
-                        <div className='mx-3'>
-                            <div className='profile-myInfo-avt mb-3'>
-                            </div>
-                            <Button variant='success'>Change Avatar</Button>
+                    <div className='mx-3'>
+                        <div className='profile-myInfo-avt'>
+                            <img src={user.avatar}></img>
                         </div>
+                        <Button variant='success' onClick={openUploadAvt}>
+                            Change Avatar
+                        </Button>
                     </div>
+                    
+                    {/* Form change avatar */}
+                    {visible && <form 
+                        ref={formRef}
+                        className='profile-change-avt text-start col-4' 
+                        enctype="multipart/form-data" 
+                        onSubmit={handleSubmit2}
+                    >
+                        
+                        <input type="file" name="avatar"></input> <br /> <br />
+                        <input type="submit" value="Submit Avatar" accept="image/*"></input> <br />
+                    </form>}
                 </div>
-                {/* Form change Infomation */}
-                <Form className='col-6 mx-auto my-5 text-start' onSubmit={handleSubmit}>
-                    <Form.Label>Username</Form.Label>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control type="text" placeholder= {username ? username : 'username'} 
-                            // onChange={handleChange}
-                            value={username ? username : 'username'}
-                            name='username'
-                        />
-                    </Form.Group>
-
-                    <Form.Label>Full Name</Form.Label>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control type="text" placeholder="Fullname" 
-                            onChange={handleChange}
-                            value={fullname}
-                            name='fullname'
-                        />
-                    </Form.Group>
-
-
-
-                    <Button variant="success" type="submit">
-                        Save
-                    </Button>
-                </Form>
             </div>
+
+            {/* Form change Infomation */}
+            <Form className='col-6 mx-auto my-5 text-start' onSubmit={handleSubmit}>
+                <Form.Label>Username</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Control type="text" placeholder= {user.username} 
+                        value=''
+                        name='username'
+                    />
+                </Form.Group>
+
+                <Form.Label>Full Name</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Control type="text" placeholder={user.fullname} 
+                        onChange={handleChange}
+                        value=''
+                        name='fullname'
+                    />
+                </Form.Group>
+                <Button variant="success" type="submit">
+                    Save
+                </Button>
+            </Form>
         </div>
     );
 }
