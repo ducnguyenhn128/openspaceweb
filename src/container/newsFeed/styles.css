@@ -19,18 +19,9 @@ body {
 
 
 
-.message_avt {
-    width: 35px;
-    height: 35px;
-    background-color: #76d0a1;
-    border-radius: 100%;
-    margin-right: 10px;
-}
-
-.user-avt {
+.user-avt img {
     height: 50px;
     width: 50px;
-    background-color: #19871d;
     border-radius: 100%;
     margin-right: 15px;
 }
@@ -76,20 +67,54 @@ body {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 2px 0px;
 }
 
-/* can be delete after 27 05 23 */
-/* Like Button */
-.like_button {
-    display: flex;
-    /* width: 80px; */
-    background-color: white;
-    border: none;
-    padding: 8px;
-    border-radius: 5px;
+.likeStats {
+    font-size: small ;
 }
 
-.like_button:hover {
-    background-color: rgb(224, 224, 224);
+.likeStats_line {
+    height: 0.1px;
+    background-color: rgb(206, 206, 206);
+    margin-top: 20px;
+    margin-bottom: 0px;
 }
+
+/* User comment */
+.user-comment-avt img {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    margin-right: 15px;
+}
+
+/* Right column */
+.news-feed-top-creator {
+    display: flex;
+    text-decoration: none;
+    height: 48px;
+}
+
+.news-feed-top-creator:hover {
+    background-color: rgb(227, 225, 225);
+}
+
+.news-feed-top-creator:hover .news-feed-top-creator-avt ,
+.news-feed-top-creator:hover .news-feed-top-creator-name {
+    background-color: rgb(227, 225, 225);
+}
+.news-feed-top-creator-avt img {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.news-feed-top-creator-name {
+    margin: auto 0;
+    color: black;
+    font-weight: 500
+}
+
+
 
 /* Media query for mobile */
 @media only screen and (max-width: 767px) {

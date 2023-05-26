@@ -1,4 +1,3 @@
-import Button from "react-bootstrap/esm/Button";
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import Header from '../header'
@@ -14,7 +13,9 @@ import { updateUser } from "../../reducers/actions";
 const ViewPost = () => {
     const {id} = useParams();
     const [postData, setPostData] = useState({
-        author: '', authorname: '', body: '', createdAt: '', favoritedCount: '', title: '', userLikeStatus: false, _id: ''
+        author: '', authorname: '', body: '', createdAt: '', favoritedCount: '', title: '', userLikeStatus: false, _id: '', 
+        author_avatar: 'https://res.cloudinary.com/dc5rnju9w/image/upload/v1685117147/dfavt_g9vebu.webp'
+        // case default avatar
     })
     const [likeStatus, setLikeStatus] = useState(false)
     const dispatch = useDispatch()
@@ -22,7 +23,7 @@ const ViewPost = () => {
         const fetchData = async () => {
             try {
                 const data2 = await apiGetUser();
-                // await console.log(`data2 : ${data2}`)
+                // console.log(`data2 : ${data2}`)
                 //ACTION set State for user & stats
                 dispatch(updateUser(data2))
 
@@ -35,7 +36,7 @@ const ViewPost = () => {
             }
         }
         fetchData();
-    }, [id])
+    }, [id, dispatch])
     const userID = useSelector(state => state.user?._id || ''); // ****************noted
     // console.log(`userID : ${userID}`)
     const handleLikeButton = async () => {
@@ -57,7 +58,7 @@ const ViewPost = () => {
                 {/* user post */}
                 <div className="d-flex">
                     <div className="user-comment-avt">
-                        
+                        <img src={postData.author_avatar} alt='avt' />
                     </div>
 
                     <div className="viewpost_info"> 

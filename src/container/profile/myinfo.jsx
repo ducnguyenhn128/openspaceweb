@@ -49,7 +49,7 @@ const MyInfo = () => {
                     {/* Profile picture */}
                     <div className='mx-3'>
                         <div className='profile-myInfo-avt'>
-                            <img src={user.avatar}></img>
+                            <img src={user.avatar} alt='avatar'></img>
                         </div>
                         <Button variant='success' onClick={openUploadAvt}>
                             Change Avatar

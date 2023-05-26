@@ -14,7 +14,8 @@ const apiGetUser = async () => {
         // let fullname = user.fullname
         const {_id, username, fullname} = user
 
-        return {_id, username, fullname}
+        // return {_id, username, fullname}
+        return response.data
     } catch(err) {
         console.error(err);
     }

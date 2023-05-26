@@ -14,3 +14,6 @@ const apiTopCreator = async () => {
 }
 
 export default apiTopCreator
+
+//BE: post, postRouter
+// return ({id: id, fullname: fullname, avatar})

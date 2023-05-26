@@ -5,12 +5,13 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import apiLikePost from '../../api/post/apiLikePost';
 import { useSelector } from 'react-redux';
 import LikeButton from '../../components/LikeButton/LikeButton';
-
+import './styles.css'
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 const FeedPost = (props) => {
     // props: author (name), tile, body, createdAt, userLikeStatus
     // props: tagList
     const info = props.info;
-    const {author, title, body, createdAt, authorname, _id, favoritedCount, userLikeStatus} = info;
+    const {author, title, body, createdAt, authorname, _id, favoritedCount, userLikeStatus, author_avatar} = info;
     const [likeStatus, setLikeStatus] = useState(userLikeStatus)
     // time of post (display yyyy-mm-dd)
     const time = createdAt && typeof createdAt === 'string' ? createdAt.slice(0, 10) : '';
@@ -37,6 +38,7 @@ const FeedPost = (props) => {
             {/* Author && Time && More Setting */}
             <div className="d-flex">
                 <div className="user-comment-avt">
+                    <img src={author_avatar} alt='author_avatar' />
                 </div>
                 {/* Author and Time */}
                 <div className="viewpost_info flex-grow-1"> 
@@ -64,24 +66,19 @@ const FeedPost = (props) => {
 
             {/* Post stats */}
             <div className="d-flex justify-content-between">
+                
                 <div >
-                    {favoritedCount}
+                    < ThumbUpOutlinedIcon className='likeStats me-1'/>{favoritedCount}
                 </div>
                 <div>
                     {/* 10 bình luận */}
                 </div>
             </div>
+
+            <div className='likeStats_line'></div>
+
             {/* Action: Like */}
             <div className="d-flex justify-content-between mt-3">
-                {/* <button className="like_button" onClick={handleLikeButton}>
-                    <ThumbUpIcon fontSize="small" className='me-1 me-1' 
-                        style={ likeStatus ? {color: '#198754'} : {color: '#666666'}}
-                    /> 
-                    <div style={ likeStatus ? {color: '#198754'} : {color: '#666666'}} > 
-                        {likeStatus ? 'Liked' : 'Like'}
-                    </div>
-
-                </button >    */}
                 <LikeButton 
                     handleClick={handleLikeButton}
                     likeStatus = {likeStatus}

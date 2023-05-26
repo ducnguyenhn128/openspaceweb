@@ -20,3 +20,5 @@ const apiNewsFeed = async (newsFeedGlobal, page) => {
 }
 
 export default apiNewsFeed
+
+// BE: postRouter, post

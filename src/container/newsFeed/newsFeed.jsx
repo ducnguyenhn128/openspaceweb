@@ -12,6 +12,7 @@ import PopularTags from "./popularTags";
 import './styles.css'
 import apiNewsFeed from '../../api/post/apiNewsFeed';
 import TopCreators from './topCreators';
+import { useSelector } from 'react-redux';
 const NewsFeed = () => {
     const [newsFeedGlobal, setNewsFeedGlobal] = useState(true)
     const navigate = useNavigate()
@@ -19,6 +20,8 @@ const NewsFeed = () => {
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     
+    const avatar = useSelector(state => state.user.avatar)   // case default avatar
+
     const fetchMorePosts = async (pageNumber) => {
         console.log(`now page number is ${pageNumber}`)
         try {
@@ -40,7 +43,7 @@ const NewsFeed = () => {
             try {
                 const initialPosts = await apiNewsFeed(newsFeedGlobal, 1);
                 console.log(`First page`)
-                console.log(initialPosts)
+                // console.log(initialPosts)
                 setAllPosts(initialPosts);
             } catch(err) {
                 console.log(err)
@@ -50,11 +53,6 @@ const NewsFeed = () => {
         fetchData();
     }, [newsFeedGlobal, navigate])
 
-    // Render a list: All post in newsfeed
-    const newsfeed1 = allPosts.map((post) => (
-        <li key={post._id}> <FeedPost info = {post}/> </li>
-    ));
-    
     // Handle Button Click: switch NewsFeed between Your Following & Globally
     const switchNewsFeed = () => {
         setNewsFeedGlobal(newsFeedGlobal => !newsFeedGlobal)
@@ -73,7 +71,7 @@ const NewsFeed = () => {
                     {/* Write a post */}
                     <div className='post-article'>
                         <div className='user-avt'>
-
+                            <img src={avatar} alt='avt' />
                         </div>
 
                         <Button variant="light" className="flex-fill text-start"  onClick = {() => {navigate('/post')}} >
@@ -97,8 +95,9 @@ const NewsFeed = () => {
                             hasMore={hasMore}
                             loader={<h4>Loading...</h4>}
                         >
+                                {/* render a list: All posts in newsfeed */}
                                 {allPosts.map((post) => (
-                                <li key={post._id}><FeedPost info = {post}/>  </li>
+                                    <li key={post._id}><FeedPost info = {post}/>  </li>
                                 ))}
                         </InfiniteScroll>
                     </div>

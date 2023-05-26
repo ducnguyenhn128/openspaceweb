@@ -32,16 +32,12 @@
     /* position: absolute; */
 }
 
-.profile-myInfo-avt {
-    width: 200px;
-    height: 200px;
-    background-color: cadetblue;
-    border-radius: 100%;
-    margin: 30px auto;
-}
 
 .profile-myInfo-avt img {
     border-radius: 100%;
+    width: 200px;
+    height: 200px;
+    margin: 30px auto;
 }
 
 /* Change Infomation */

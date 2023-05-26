@@ -8,7 +8,7 @@ const LikeButton = (props) => {
     const {likeStatus = false, handleClick} = props
     return (  
         <button className="like_button" onClick={handleClick}>
-            <ThumbUpIcon fontSize="small" className='me-1 me-1' 
+            <ThumbUpIcon fontSize="medium" className='me-1 me-1' 
                 style={ likeStatus ? {color: '#198754'} : {color: '#666666'}}
             /> 
             <div style={ likeStatus ? {color: '#198754'} : {color: '#666666'}} > 

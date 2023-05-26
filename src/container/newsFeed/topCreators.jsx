@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import apiTopCreator from '../../api/post/apiTopCreator';
+import './styles.css'
+
+const URL = process.env.REACT_APP_URL0
 
 const TopCreators = () => {
     const [creator, setCreator] = useState([])
@@ -8,7 +11,7 @@ const TopCreators = () => {
             const fetchData = async() => {
                 try {
                     const data = await apiTopCreator();
-                    setCreator(data)
+                    setCreator(data)  // object {_id, fullname, avatar}
                 } catch(err) {
                     console.log(err)
                 }
@@ -20,19 +23,20 @@ const TopCreators = () => {
     }, []);
 
     const TopCreator = creator.map(el => (
-        <div className="d-flex mb-3 bg-light">
-            <div className="message_avt my-auto">
-
+        <a href={`/user/${el.id}`} 
+            className="news-feed-top-creator">
+            <div className="news-feed-top-creator-avt my-auto">
+                <img src={el.avatar} alt='avt' />
             </div>
-            <div className='my-auto' >
-                <p className='my-auto'><b>{el.fullname}</b></p>
-        </div>
-    </div>
+            <div className='news-feed-top-creator-name' >
+                {el.fullname}
+            </div>
+        </a>
     ))
 
     return (
         <>
-            <p>TOP CONTRIBUTORS</p>
+            <p className='mt-2 mb-0'>TOP CONTRIBUTORS</p>
             {TopCreator}
         </>
     );

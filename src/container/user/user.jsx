@@ -28,7 +28,7 @@ const User = () => {
             const user = response.data.user;
             setFollowStatus(response.data.followStatus)
 
-            // console.log("Data Response: ", user);
+            console.log("Data Response: ", user);
             // console.log("Followstatus: ", response.data.followStatus);
             // set State for user & stats
             setUser(user)
@@ -45,17 +45,22 @@ const User = () => {
         fetchData();
     }, [URL, followStatus, navigate])
 
-    const [user, setUser] = useState()
+    const [user, setUser] = useState({
+        fullname: '', avatar: ''
+    })
     const [totalPosts, setTotalPosts] = useState(0);
     const [totalFriends, setTotalFriends] = useState(0);
     const [totalFollowings, setTotalFollowings] = useState(0);
     const [totalFollowers, setTotalFollowers] = useState(0);
 
     // Get Full Name
-    let fullName = "";
-    if (user && user.info && user.info.fullname) {
-        fullName = user.info.fullname
-    }
+    // let fullName = "";
+    // if (user && user.fullname) {
+    //     fullName = user.fullname
+    // }
+
+    // Get Avatar
+
     
     // Handle Follow button
     const handleFollow = async () => {
@@ -63,7 +68,7 @@ const User = () => {
         // console.log(URL2)
         try { 
            const response = await axios.post(URL2, null, { withCredentials: true }) ;
-           if (response.status == '201') {
+           if (response.status === 201) {
                 setFollowStatus(followStatus => !followStatus)
            }
         } catch(err) {
@@ -98,9 +103,11 @@ const User = () => {
             <Header />
             <Sidebar style={{float: 'left', width: '20%'}}>
                 <Menu>
-                    <div style={{width: '100px', height: '100px', backgroundColor: '#6a6b', borderRadius: '100%', margin: '20px auto'}}>
+                    <div>
+                        <img src={user.avatar} alt='avt' 
+                        style={{width: '100px', height: '100px',borderRadius: '100%',margin: '20px auto'}} />
                     </div>
-                    <h3>{fullName}</h3>
+                    <h5>{user.fullname}</h5>
                     <MenuItem component={<Link to='./'/>}> Profile </MenuItem>
                     <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem>
                     <MenuItem>

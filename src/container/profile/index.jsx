@@ -12,7 +12,7 @@ import Follows from './follows';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../../reducers/actions';
 
 const Profile = () => {
@@ -53,21 +53,23 @@ const Profile = () => {
     const [totalFollowers, setTotalFollowers] = useState(0);
 
 
-    let fullName = "";
-    if (user && user.fullname) {
+    // let fullName = "";
+    // if (user && user.fullname) {
         // if people has not set full name, display their username
-        fullName = user.fullname;
-    }
-
+    //     fullName = user.fullname;
+    // }
+    
+    const fullname = useSelector(state => state.user.fullname)
+    const avatar = useSelector(state => state.user.avatar)
     return (
         <ProSidebarProvider>
             <Header />
             <Sidebar style={{float: 'left', width: '20%'}}>
                 <Menu>
-                    <div style={{width: '100px', height: '100px', backgroundColor: '#6a6b', borderRadius: '100%', margin: '20px auto'}}>
-
+                    <div>
+                        <img src={avatar} alt='avt'  style={{width: '100px', height: '100px',borderRadius: '100%', margin: '20px auto'}} />
                     </div>
-                    <h5>{fullName}</h5>
+                    <h5>{fullname}</h5>
                     <MenuItem component={<Link to='./'/>}> Profile </MenuItem>
                     <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem>
                     <MenuItem component={<Link to='./follows'/>}> Follows </MenuItem>
