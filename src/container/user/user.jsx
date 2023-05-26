@@ -111,7 +111,7 @@ const User = () => {
                     </MenuItem>                
                 </Menu>
             </Sidebar>
-            <main>
+            <main style={{marginTop: '60px'}}>
                 <Routes>
                     <Route path='/*' element={ 
                         <ProfileStas 

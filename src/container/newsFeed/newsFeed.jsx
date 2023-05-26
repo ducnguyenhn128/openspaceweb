@@ -1,31 +1,47 @@
 // This element fetch data to display all posts
 // Option: Display posts from Global or User's Following
 // BE: postRouter
-import React, {Suspense, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
-// import LazyLoad from 'react-lazyload/'
+import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from "../header";
 import FeedPost from "./feedPost";
 import PopularTags from "./popularTags";
 import './styles.css'
-
 import apiNewsFeed from '../../api/post/apiNewsFeed';
 import TopCreators from './topCreators';
-import { Spinner } from 'react-bootstrap';
 const NewsFeed = () => {
     const [newsFeedGlobal, setNewsFeedGlobal] = useState(true)
     const navigate = useNavigate()
     const [allPosts, setAllPosts] = useState([]) ;
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
     
+    const fetchMorePosts = async (pageNumber) => {
+        console.log(`now page number is ${pageNumber}`)
+        try {
+          const response = await apiNewsFeed(newsFeedGlobal, pageNumber);
+          const newPosts = response;
+          if (newPosts && newPosts.length > 0) {
+            setAllPosts((prevPosts) => [...prevPosts, ...newPosts]);
+            setPage(pageNumber);
+            setHasMore(true);
+          } else {
+            setHasMore(false);
+          }
+        } catch (error) {
+          console.error('Error loading more posts:', error);
+        }
+      };
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await apiNewsFeed(newsFeedGlobal)  //api
-                // do not delete
-                console.log(response.data) 
-                setAllPosts(response.data)  // All Posts in the news feed
+                const initialPosts = await apiNewsFeed(newsFeedGlobal, 1);
+                console.log(`First page`)
+                console.log(initialPosts)
+                setAllPosts(initialPosts);
             } catch(err) {
                 console.log(err)
                 navigate('/login')
@@ -35,8 +51,8 @@ const NewsFeed = () => {
     }, [newsFeedGlobal, navigate])
 
     // Render a list: All post in newsfeed
-    const newsfeed1 = allPosts.map((el, index) => (
-        <li key={index}> <FeedPost info = {el}/> </li>
+    const newsfeed1 = allPosts.map((post) => (
+        <li key={post._id}> <FeedPost info = {post}/> </li>
     ));
     
     // Handle Button Click: switch NewsFeed between Your Following & Globally
@@ -75,11 +91,19 @@ const NewsFeed = () => {
 
                     {/* All Posts in News Feed */}
                     <div className='bg-light newsfeed1'>
-                        <Suspense fallback={<Spinner />}>
-                            {newsfeed1}
-                        </Suspense>
+                        <InfiniteScroll
+                            dataLength={allPosts.length}
+                            next={() => fetchMorePosts(page + 1)}
+                            hasMore={hasMore}
+                            loader={<h4>Loading...</h4>}
+                        >
+                                {allPosts.map((post) => (
+                                <li key={post._id}><FeedPost info = {post}/>  </li>
+                                ))}
+                        </InfiniteScroll>
                     </div>
                 </div>
+
                 {/* Right column */}
                 <div class='col-2 text-start bg-light right_column mt-2'>
                     <TopCreators />
@@ -90,3 +114,11 @@ const NewsFeed = () => {
 }
 
 export default NewsFeed;
+
+// Logic lazy load
+// Dependance:  <InfiniteScroll> from import InfiniteScroll from 'react-infinite-scroll-component';
+// First, fetch 10 post (in the use Effect)
+// Then in InfiniteScroll check hasMore is true => it call next => fecth more post
+// Function Fecth More Post call API at page 2, receive data, => allPosts => render ..
+// When Function Fecth More Post call API but receive no data  => set has more is false => no load anymore
+// Notice that the API endpoint at backend has to receice page number, and has abilty to send post at a specific page

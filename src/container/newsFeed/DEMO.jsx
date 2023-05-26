@@ -4,62 +4,59 @@
 import React, { useEffect, useState} from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import './styles.css'
-
 import apiNewsFeed from '../../api/post/apiNewsFeed';
+import apiGetPost from '../../api/sandbox/getPost';
+import FeedPost from './feedPost';
 
 const Demo = () => {
-    const [newsFeedGlobal, setNewsFeedGlobal] = useState(true);
-    const [allPosts, setAllPosts] = useState([]);
-    const [page, setPage] = useState(1);
-  
-    const fetchMorePosts = async (pageNumber) => {
-      try {
-        const response = await apiNewsFeed(newsFeedGlobal, pageNumber); // Make an API request with the updated page number
-        const newPosts = response.data;
-        setAllPosts((prevPosts) => [...prevPosts, ...newPosts]); // Append the new posts to the existing list
-        setPage(pageNumber); // Update the page counter
-      } catch (error) {
-        console.error('Error loading more posts:', error);
+  const [allPosts, setAllPosts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+
+  const fetchMorePosts = async (pageNumber) => {
+    console.log(`now page number is ${pageNumber}`)
+    try {
+      const response = await apiGetPost(pageNumber);
+      const newPosts = response;
+      if (newPosts && newPosts.length > 0) {
+        setAllPosts((prevPosts) => [...prevPosts, ...newPosts]);
+        setPage(pageNumber);
+        setHasMore(true);
+      } else {
+        setHasMore(false);
       }
-    };
-  
-    const fetchPostsFromAPI = async (pageNumber) => {
+    } catch (error) {
+      console.error('Error loading more posts:', error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchPosts = async () => {
       try {
-        const response = await apiNewsFeed(newsFeedGlobal, pageNumber); // Make an API request with the provided page number
-        return response.data; // Return the fetched posts
+        const initialPosts = await apiGetPost(1);
+        console.log(initialPosts)
+        setAllPosts(initialPosts);
       } catch (error) {
         console.error('Error loading posts:', error);
-        throw error; // Rethrow the error to handle it in the component
       }
     };
-  
-    useEffect(() => {
-      const fetchPosts = async () => {
-        try {
-          const initialPosts = await fetchPostsFromAPI(1); // Fetch posts for the initial page
-          setAllPosts(initialPosts);
-        } catch (error) {
-          console.error('Error loading posts:', error);
-        }
-      };
-      fetchPosts();
-    }, []);
-  
-    return (
-      <InfiniteScroll
-        dataLength={allPosts.length} // Total number of posts
-        next={() => fetchMorePosts(page + 1)} // Function to load more posts
-        hasMore={true} // Set to false when all posts are loaded
-        loader={<h4>Loading...</h4>} // JSX element to display while loading
-      >
+    fetchPosts();
+  }, []);
+
+  return (
+    <InfiniteScroll
+      dataLength={allPosts.length}
+      next={() => fetchMorePosts(page + 1)}
+      hasMore={hasMore}
+      loader={<h4>Loading...</h4>}
+    >
+      <div className='col-6 mx-auto'>
         {allPosts.map((post) => (
-          <div key={post._id}>
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
-          </div>
+          <li key={post._id}><FeedPost info = {post}/>  </li>
         ))}
-      </InfiniteScroll>
-    );
-  };
-  
-  export default Demo;
+      </div>
+    </InfiniteScroll>
+  );
+};
+
+export default Demo;
