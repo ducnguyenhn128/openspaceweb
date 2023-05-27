@@ -6,8 +6,13 @@
     border: none;
     padding: 8px;
     border-radius: 5px;
+    align-items: end;
 }
 
 .like_button:hover {
     background-color: rgb(224, 224, 224);
+}
+
+.like_button_icon {
+    margin-bottom: 1.5px;
 }

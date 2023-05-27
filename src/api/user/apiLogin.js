@@ -11,7 +11,7 @@ const apiLogin = async (formData) => {
                   },
                 withCredentials: true
             })
-            return response.data
+            return response
         } catch (err) {
             console.log(err)
         }

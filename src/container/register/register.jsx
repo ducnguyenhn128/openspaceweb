@@ -2,9 +2,10 @@ import React, {useState} from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
-
 import './styles.css';
 import cover from '../photo/logoheader.jpg'
+import formValidation from '../../utils/formValidation';
+import apiRegister from './../../api/user/apiRegister';
 
 const URL0 = process.env.REACT_APP_URL0;
 const Register = () => {
@@ -18,37 +19,25 @@ const Register = () => {
         }))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (newUser.password !== newUser.confirmPass) {
-            alert('Password not match');
-        }
-        else {
-            const {username, email, password, fullname} = newUser;
-            const formData = {username, email, password, fullname};
-            console.log(formData)
+        const {username, email, password, fullname, confirmPass} = newUser;
+        const formData = {username, email, password, fullname};
+        // console.log(formData)
+        // formValidation(email, password, newUser.confirmPass)
+        if (formValidation(email, password, confirmPass) === true) {
             // reset Form 
             setNewUser({})
-            // send data
-            const URL1 = URL0 + '/api'
-            fetch(URL1, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-              // Handle the response data
-              console.log(data);
-              // Redirect to the homepage after creating the user
-              navigate('/')
-            })
-            .catch(error => {
-              // Handle any errors
-              console.error(error);
-            });  
+            try {
+                // send data
+                const data = await apiRegister(formData)
+                // Handle the response data
+                console.log(data);
+                // Redirect to the homepage after creating the user
+                navigate('/')
+            } catch(err) {
+                console.log(err)
+            }
         }
     }
 

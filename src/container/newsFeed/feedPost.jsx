@@ -6,7 +6,7 @@ import apiLikePost from '../../api/post/apiLikePost';
 import { useSelector } from 'react-redux';
 import LikeButton from '../../components/LikeButton/LikeButton';
 import './styles.css'
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import TotalLikes from '../../components/TotalLikes/TotalLikes';
 const FeedPost = (props) => {
     // props: author (name), tile, body, createdAt, userLikeStatus
     // props: tagList
@@ -64,21 +64,14 @@ const FeedPost = (props) => {
                 <p dangerouslySetInnerHTML={{ __html: formattedBody }}></p>
             </div>
 
-            {/* Post stats */}
-            <div className="d-flex justify-content-between">
-                
-                <div >
-                    < ThumbUpOutlinedIcon className='likeStats me-1'/>{favoritedCount}
-                </div>
-                <div>
-                    {/* 10 bình luận */}
-                </div>
-            </div>
+            {/* Post stats */}            
+            <TotalLikes like={favoritedCount} clientLike = {likeStatus}/>
+            {/* like = 0, clientLike = false */}
 
             <div className='likeStats_line'></div>
 
             {/* Action: Like */}
-            <div className="d-flex justify-content-between mt-3">
+            <div className="d-flex justify-content-between mt-2">
                 <LikeButton 
                     handleClick={handleLikeButton}
                     likeStatus = {likeStatus}

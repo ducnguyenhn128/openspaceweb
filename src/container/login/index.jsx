@@ -26,8 +26,11 @@ const LogIn = () => {
 
         try {
             // Sending API, then navigate if login success
-            await apiLogin(formData);
-            navigate('/profile')
+            const response = await apiLogin(formData);
+            console.log(response)
+            if (response.status === 200) {
+                navigate('/profile')
+            }
         } catch(err) {
             console.error(error);
             setError('Username or password is incorrect.');

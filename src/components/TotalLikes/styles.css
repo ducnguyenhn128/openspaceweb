@@ -1,0 +1,15 @@
+.total_like{
+    display: flex;
+    padding-left: 8px;
+    /* border: 1px solid brown; */
+}
+
+.total_like_icon {
+    /* border: 1px solid red */
+}
+
+.total_like_number {
+    margin-top: 2px;
+    padding: 0px;
+    /* border: 1px green solid; */
+}

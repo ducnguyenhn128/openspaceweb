@@ -5,6 +5,7 @@ import './styles.css'
 import apiProfile from '../../api/apiProfile';
 import apiAvatar from '../../api/user/apiAvatar';
 import { useSelector } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const MyInfo = () => {
 
@@ -12,7 +13,7 @@ const MyInfo = () => {
     console.log(user)
     const [visible, setVisible] = useState(false)
     const formRef = useRef(null);
-    
+    const navigate = useNavigate();
     // Change infomation 
     const [fullname, setFullname] = useState('');
     const handleChange = (e) => {
@@ -31,6 +32,9 @@ const MyInfo = () => {
         try {
             const response = await apiAvatar(formData);
             console.log(response)
+            if (response.status === 200) {
+                navigate('/profile')
+            }
             // Reset the form fields
             formRef.current.reset();
         } catch(err) {

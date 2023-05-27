@@ -11,7 +11,7 @@ const apiAvatar = async (formData) => {
             }
         })
 
-        return response.data
+        return response
     } catch(err) {
         console.log(err)
     }
