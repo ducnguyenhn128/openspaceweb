@@ -97,7 +97,7 @@ const NewsFeed = () => {
                         >
                                 {/* render a list: All posts in newsfeed */}
                                 {allPosts.map((post) => (
-                                    <li key={post._id}><FeedPost info = {post}/>  </li>
+                                    <li key={post._id}><FeedPost info = {post}/> </li>
                                 ))}
                         </InfiniteScroll>
                     </div>

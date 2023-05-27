@@ -25,7 +25,9 @@
     color: red;
   }
 
-
+.profile-recent-post li {
+    list-style-type: none;
+}
 
 /* My Info */
 .profile-myInfo-allphoto {

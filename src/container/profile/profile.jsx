@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import apiUserRecentPost from '../../api/profile/apiUserRecentPost';
 import FeedPost from '../newsFeed/feedPost';
-
+import './styles.css'
 const ProfileStas =  () => {
     const stats = useSelector(state => state.user.stats)
     const userID = useSelector(state => state.user._id)
@@ -12,7 +12,7 @@ const ProfileStas =  () => {
         const fetchData = async () => {
             const response = await apiUserRecentPost(userID);
             console.log(response)
-            setRecentPost(recentPost)
+            setRecentPost(response)
         }
         fetchData();
     }, [userID])
@@ -38,30 +38,15 @@ const ProfileStas =  () => {
                  {/* Posts  */}
                  <div className='mt-4'>
                      {/* Recent Post line */}
-                     <div className='d-flex justify-content-between mx-2'>
-                         <h4>Recent Posts</h4>    
+                     <div className='d-flex justify-content-between mx-2 mb-3'>
+                         <h4 className='mx-2'>Recent Posts</h4>    
                          <Link>See more</Link>
                      </div>
                      {/* render a list */}
-                     <div>
+                     <div className='profile-recent-post'>
                         {recentPost.map((post) => (
-                            <li><FeedPost el={post}/></li>
+                            <li key={post._id}><FeedPost info={post}/></li>
                         ) )}
-                     </div>
-                     <div className="bg-white text-start mx-2">
-                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                     </div>
-                     <div className="bg-white text-start mx-2">
-                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                     </div>
-                     <div className="bg-white text-start mx-2">
-                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                     </div>
-                     <div className="bg-white text-start mx-2">
-                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                     </div>
-                     <div className="bg-white text-start mx-2">
-                         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
                      </div>
                  </div>
                 

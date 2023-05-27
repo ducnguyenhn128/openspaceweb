@@ -49,22 +49,20 @@ const Profile = () => {
     return (
         <ProSidebarProvider>
             <Header />
-            <Sidebar style={{float: 'left', width: '20%'}}>
+            <Sidebar style={{float: 'left', width: '20%', position: 'fixed', top: '60px'}}>
                 <Menu>
                     <div>
                         <img src={avatar} alt='avt'  style={{width: '100px', height: '100px',borderRadius: '100%', margin: '20px auto'}} />
                     </div>
                     <h5>{fullname}</h5>
                     <MenuItem component={<Link to='./'/>}> Profile </MenuItem>
-                    <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem>
                     <MenuItem component={<Link to='./follows'/>}> Follows </MenuItem>
                     <MenuItem component={<Link to='./passwords'/>}> Password </MenuItem>
-                    <MenuItem component={<Link to='./privacy'/>}> Privacy </MenuItem>
                     <MenuItem component={<Link to='./myinfo'/> }> My Info </MenuItem>
                     
                 </Menu>
             </Sidebar>
-            <main style={{marginTop: '60px'}}>
+            <main style={{marginTop: '60px', marginLeft: '20%'}}>
                 <Routes>
                     <Route path='/*' element={ 
                         <ProfileStas
