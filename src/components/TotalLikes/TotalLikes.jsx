@@ -11,6 +11,9 @@ const TotalLikes = (props) => {
     if (clientLike === true && like == 1) {
         text = `You & 1 other`
     }
+    if (clientLike === true && like == 0) {
+        text = `You liked this post`
+    }
 
     if (clientLike === false && like !== '0') {
         text = `${like}`

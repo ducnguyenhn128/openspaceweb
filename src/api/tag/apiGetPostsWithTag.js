@@ -7,7 +7,9 @@ const URL0 = process.env.REACT_APP_URL0;
 const apiGetPostsWithTag = async (tag) => {
     const URL = URL0 + '/tag/' + tag ;  //ex: /tag/sport
     try {
-        const response = await axios.get(URL);
+        const response = await axios.get(URL, {
+            withCredentials: true
+        });
         return response.data;
     } catch (err) {
         console.log(err)

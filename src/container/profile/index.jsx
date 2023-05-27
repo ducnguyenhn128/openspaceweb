@@ -27,16 +27,12 @@ const Profile = () => {
                     withCredentials: true,
                 },
             );
-            const user = response.data;
+            const user = await response.data;
             console.log("Data Response: ", user);
 
             //ACTION set State for user & stats
             dispatch(updateUser(user))
             setUser(user)
-            setTotalPosts(user.stats.posts)
-            setTotalFriends(user.stats.friends)
-            setTotalFollowers(user.stats.follower)
-            setTotalFollowings(user.stats.following)
                 
             } catch(err) {
                 console.error(err);
@@ -47,17 +43,6 @@ const Profile = () => {
     }, [navigate, URL, dispatch ])
 
     const [user, setUser] = useState();
-    const [totalPosts, setTotalPosts] = useState(0);
-    const [totalFriends, setTotalFriends] = useState(0);
-    const [totalFollowings, setTotalFollowings] = useState(0);
-    const [totalFollowers, setTotalFollowers] = useState(0);
-
-
-    // let fullName = "";
-    // if (user && user.fullname) {
-        // if people has not set full name, display their username
-    //     fullName = user.fullname;
-    // }
     
     const fullname = useSelector(state => state.user.fullname)
     const avatar = useSelector(state => state.user.avatar)
@@ -83,10 +68,9 @@ const Profile = () => {
                 <Routes>
                     <Route path='/*' element={ 
                         <ProfileStas
-                            totalPosts={totalPosts}
-                            totalFriends={totalFriends}
-                            totalFollowers={totalFollowers}
-                            totalFollowings={totalFollowings}
+                            // totalPosts={totalPosts}
+                            // totalFollowers={totalFollowers}
+                            // totalFollowings={totalFollowings}
                         />
                     }/> 
                     <Route path='/passwords' element={ <Password />} />
