@@ -43,7 +43,7 @@ const NewsFeed = () => {
             try {
                 const initialPosts = await apiNewsFeed(newsFeedGlobal, 1);
                 console.log(`First page`)
-                // console.log(initialPosts)
+                console.log(initialPosts)
                 setAllPosts(initialPosts);
             } catch(err) {
                 console.log(err)

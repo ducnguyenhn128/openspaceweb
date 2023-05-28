@@ -8,10 +8,12 @@ import LikeButton from '../../components/LikeButton/LikeButton';
 import './styles.css'
 import TotalLikes from '../../components/TotalLikes/TotalLikes';
 const FeedPost = (props) => {
-    // props: author (name), tile, body, createdAt, userLikeStatus
-    // props: tagList
-    const info = props.info;
-    const {author, title, body, createdAt, authorname, _id, favoritedCount, userLikeStatus, author_avatar} = info;
+    // props: author (name), tile, body, createdAt, userLikeStatus, authorname,
+    // props: _id, favoritedCount, userLikeStatus, author_avatar, image,   tagList
+    // const info = props.info;
+    const { author, title, body, createdAt, authorname, _id, 
+        favoritedCount, userLikeStatus, author_avatar, image
+    } = props.info;
     const [likeStatus, setLikeStatus] = useState(userLikeStatus)
     // time of post (display yyyy-mm-dd)
     const time = createdAt && typeof createdAt === 'string' ? createdAt.slice(0, 10) : '';
@@ -57,6 +59,12 @@ const FeedPost = (props) => {
             {/* Title */}
             <div className="mt-4">
                 <h3>{title}</h3>
+            </div>
+            {/* Image */}
+            <div className='newsfeed_post_img' 
+                style={image === '' ?  {display: "none"} : {display: "block"}}
+            >
+                <img src={image} alt='img'/>
             </div>
             {/* Body */}
             <div className="mt-4">

@@ -1,5 +1,6 @@
 import axios from "axios";
 const URL0 = process.env.REACT_APP_URL0;
+const token = localStorage.getItem('token');
 
 const apiViewPost = async (id) => {
     

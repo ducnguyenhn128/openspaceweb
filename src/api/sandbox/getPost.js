@@ -7,16 +7,16 @@ const URL_FOLLOW = URL0 + '/post/feed-follow'  // use it to fetch from user's fo
 
 const apiGetPost = async (page) => {
     // const URL = newsFeedGlobal ? URL_GLOBAL : URL_FOLLOW // fetch global or fetch user following
-    try {
-        const response = await axios.get(URL, {
-            withCredentials: true,
-            params: {page: page}
-        })
+    // try {
+    //     const response = await axios.get(URL, {
+    //         withCredentials: true,
+    //         params: {page: page}
+    //     })
         
-        return response.data
-    } catch(err) {
-        console.log(err)
-    }
+    //     return response.data
+    // } catch(err) {
+    //     console.log(err)
+    // }
 }
 
-export default apiGetPost
+// export default apiGetPost

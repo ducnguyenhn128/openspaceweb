@@ -10,7 +10,6 @@ body {
 }
 
 .left_column {
-    /* position: fixed; */
     width: 300px
 }
 .right_column * , .left_column *{
@@ -19,19 +18,11 @@ body {
 
 
 
-.user-avt img {
-    height: 50px;
-    width: 50px;
-    border-radius: 100%;
-    margin-right: 15px;
-}
 .popular_tag {
-    /* width: 360px; */
     width: 23%;
     position: fixed;
     top: 70px;
     padding: 8px 24px;
-    /* border: 1px red solid; */
 }
 
 .popular_tag a:hover {
@@ -43,6 +34,14 @@ body {
 }
 
 /* Center */
+
+.user-avt img {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    margin-right: 15px;
+}
+
 .post-article {
     background-color: white;
     margin-top: 16px;
@@ -65,6 +64,10 @@ body {
     border: 1px solid #dee2e6;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 2px 0px;
+}
+
+.newsfeed_post_img img {
+    width: 80%;
 }
 
 .likeStats {

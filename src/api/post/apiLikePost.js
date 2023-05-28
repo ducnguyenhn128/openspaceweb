@@ -1,6 +1,8 @@
 import axios from "axios";
 const URL0 = process.env.REACT_APP_URL0;
 const URL = URL0 + '/post/like';
+const token = localStorage.getItem('token');
+
 
 const apiLikePost = async (info) => {
     // info: {postID: string, userID: string}

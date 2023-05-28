@@ -1,4 +1,5 @@
 import axios from "axios";
+const token = localStorage.getItem('token');
 
 const URL0 = process.env.REACT_APP_URL0;
 const URL_GLOBAL = URL0 + '/post/feed-global'  // use it to fetch  all post (global)

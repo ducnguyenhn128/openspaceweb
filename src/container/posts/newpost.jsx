@@ -42,11 +42,24 @@ const NewPost = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const formData = new FormData(e.target);
+        
         const createdAt = new Date();
+        formData.append('createdAt', createdAt)
+        console.log(formData)
+
+
         const content = {title, body, createdAt, tagList: sampletag };
+        // 28 05
+        // const formData = new FormData();
+        // formData.append('title', title)
+        // formData.append('body', body)
+        // formData.append('createdAt', createdAt)
+        // formData.append('tagList', sampletag)
         // console.log(content);
         try {
-            const response = await apiNewPost(content); //api
+            // const response = await apiNewPost(content); //api
+            const response = await apiNewPost(formData);
             console.log(response)
         } catch(err) {
             console.log(err);
@@ -79,6 +92,11 @@ const NewPost = () => {
                     />
                 </Form.Group>
                 
+                <Form.Group controlId="formFile" className="text-start mb-3">
+                    <Form.Label>Photo</Form.Label>
+                    <Form.Control type="file" enctype="multipart/form-data"/>
+                </Form.Group>
+
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Control type="text" placeholder="hashtag" 
                         onChange={handleHashtagChange}
@@ -86,6 +104,8 @@ const NewPost = () => {
                         name='hashtag'
                     />
                 </Form.Group>
+
+
                 <p>{sampletag[3]}</p>
                 <p className='text-start fw-lighter bg-light p-3 rounded'>Guideline: Hashtag seperate by a comma: ex: news, sport ...</p>
                 {/* List of tag will be apply */}

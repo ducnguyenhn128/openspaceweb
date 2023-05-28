@@ -1,5 +1,6 @@
 // Get client user Infomation
 import axios from "axios";
+const token = localStorage.getItem('token');
 const URL0 = process.env.REACT_APP_URL0;
 const URL1 = URL0 + '/api/profile';
 
