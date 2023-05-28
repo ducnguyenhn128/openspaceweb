@@ -5,14 +5,14 @@ import React, {useEffect, useState} from 'react'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
+import TopCreators from './topCreators';
+import { useSelector } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from "../header";
 import FeedPost from "./feedPost";
 import PopularTags from "./popularTags";
 import './styles.css'
 import apiNewsFeed from '../../api/post/apiNewsFeed';
-import TopCreators from './topCreators';
-import { useSelector } from 'react-redux';
 const NewsFeed = () => {
     const [newsFeedGlobal, setNewsFeedGlobal] = useState(true)
     const navigate = useNavigate()
@@ -67,7 +67,7 @@ const NewsFeed = () => {
                 </div>
                 
                 {/* Center */}
-                <div className='col-12 col-md-6  bg-light'>
+                <div className='col-12 col-md-4  bg-light'>
                     {/* Write a post */}
                     <div className='post-article'>
                         <div className='user-avt'>

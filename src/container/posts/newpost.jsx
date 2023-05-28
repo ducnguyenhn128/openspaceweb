@@ -6,17 +6,17 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../header';
 import apiNewPost from '../../api/post/apiNewPost';
 import apiGetUser from '../../api/user/apiGetUser';
-
+import getTimeNow from '../../utils/getTimeNow';
 const NewPost = () => {
     const [fullname, setFullname] = useState('')
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
     const [hashtag, setHashtag] = useState('')
     const [sampletag, setSampletag] = useState(['news', 'sport'])
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     // Get user Infomatiom
     useEffect(() => {
-        
         const fetchFullname = async () => {
             const response = await apiGetUser();  //api
             setFullname(response.fullname)
@@ -37,38 +37,34 @@ const NewPost = () => {
         if (regex.test(e.target.value) || e.target.value === '') {
             setHashtag(e.target.value);
         };
-        const sample = processHashtag(e.target.value);
+        const sample = processHashtag(e.target.value);   // hashtag => array
         setSampletag(sample)
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        
+        setLoading(true);  // loading state
         const createdAt = new Date();
+
+        const formData = new FormData();
+        formData.append('title', title)
+        formData.append('body', body)
         formData.append('createdAt', createdAt)
-        console.log(formData)
-
-
-        const content = {title, body, createdAt, tagList: sampletag };
-        // 28 05
-        // const formData = new FormData();
-        // formData.append('title', title)
-        // formData.append('body', body)
-        // formData.append('createdAt', createdAt)
-        // formData.append('tagList', sampletag)
-        // console.log(content);
+        formData.append('tagList', hashtag)   // temporary
+        formData.append('img', e.target.elements.img.files[0]);
+        // console.log(formData)
         try {
-            // const response = await apiNewPost(content); //api
             const response = await apiNewPost(formData);
             console.log(response)
         } catch(err) {
             console.log(err);
+        } finally {
+            // reset the form field
+            setTitle('');
+            setBody('');
+            setHashtag('')
+            setLoading(false); // loading state
+            navigate('/feed') // return to the news feed
         }
-        // reset the form field
-        setTitle('');
-        setBody('');
-        setHashtag('')
-        navigate('/feed') // return to the news feed
     }
 
     return (
@@ -82,6 +78,7 @@ const NewPost = () => {
                         onChange={handleTitleChange}
                         value={title}
                         name='title'
+                        required
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -89,12 +86,13 @@ const NewPost = () => {
                         onChange={handleBodyChange}
                         value={body}
                         name='body'
+                        required
                     />
                 </Form.Group>
                 
                 <Form.Group controlId="formFile" className="text-start mb-3">
                     <Form.Label>Photo</Form.Label>
-                    <Form.Control type="file" enctype="multipart/form-data"/>
+                    <Form.Control type="file" enctype="multipart/form-data" name="img"/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -116,8 +114,8 @@ const NewPost = () => {
                         </div>
                     ))}
                 </div>
-                <Button variant="success" type="submit">
-                    Submit your post
+                <Button variant="success" type="submit" disabled={loading}>
+                    {loading ? 'Loading...' : 'Submit your post'}
                 </Button>
             </Form>
             {/* Tag */}

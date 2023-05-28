@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap';
 import axios from 'axios';
 
 import './styles.css'
-import Posts from '../profile/posts';
 import ProfileStas from '../profile/profile';
 import Header from '../header';
 import Follows from '../profile/follows';
@@ -109,7 +108,7 @@ const User = () => {
                     </div>
                     <h5>{user.fullname}</h5>
                     <MenuItem component={<Link to='./'/>}> Profile </MenuItem>
-                    <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem>
+                    {/* <MenuItem component={<Link to='./posts'/>}> Posts </MenuItem> */}
                     <MenuItem>
                         {/* Check follow status */}
                         <Button onClick={handleClick}>
@@ -129,7 +128,7 @@ const User = () => {
                         />
                     }/> 
                     <Route path='/follows' element={ <Follows/>} />
-                    <Route path='/posts' element={ < Posts totalPosts={totalPosts}/>} />
+                    {/* <Route path='/posts' element={ < Posts totalPosts={totalPosts}/>} /> */}
                 </Routes>
             </main>       
         </ProSidebarProvider>

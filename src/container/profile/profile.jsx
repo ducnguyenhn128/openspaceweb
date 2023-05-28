@@ -36,7 +36,7 @@ const ProfileStas =  () => {
                     
                  </div>
                  {/* Posts  */}
-                 <div className='mt-4'>
+                 <div className='mt-4 col-md-8'>
                      {/* Recent Post line */}
                      <div className='d-flex justify-content-between mx-2 mb-3'>
                          <h4 className='mx-2'>Recent Posts</h4>    

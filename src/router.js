@@ -2,7 +2,6 @@
 import { createBrowserRouter} from 'react-router-dom';
 import Register from "./container/register/register";
 import Profile from "./container/profile";
-import Posts from "./container/profile/posts";
 import Follows from "./container/profile/follows";
 import Password from "./container/profile/password";
 import Privacy from "./container/profile/privacy";
@@ -44,7 +43,6 @@ const router = createBrowserRouter([
       path: 'profile/*',   //login required
       element: <Profile/> ,
       children: [
-        {path: 'posts', element: <Posts/>},
         {path: 'follows', element: <Follows />},
         {path: 'passwords', element: <Password />},
         {path: 'privacy', element: <Privacy />},

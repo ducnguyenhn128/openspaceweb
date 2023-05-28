@@ -5,7 +5,6 @@ import { Sidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import Password from './password';
 import Privacy from './privacy';
 import MyInfo from './myinfo';
-import Posts from './posts';
 import ProfileStas from './profile';
 import Header from '../header';
 import Follows from './follows';
@@ -66,16 +65,12 @@ const Profile = () => {
                 <Routes>
                     <Route path='/*' element={ 
                         <ProfileStas
-                            // totalPosts={totalPosts}
-                            // totalFollowers={totalFollowers}
-                            // totalFollowings={totalFollowings}
                         />
                     }/> 
                     <Route path='/passwords' element={ <Password />} />
                     <Route path='/privacy' element={ <Privacy />} />
                     <Route path='/follows' element={ <Follows/>} />
                     <Route path='/myinfo' user={user} element={ <MyInfo />} />
-                    <Route path='/posts' element={ < Posts/>} />
                 </Routes>
             </main>       
         </ProSidebarProvider>

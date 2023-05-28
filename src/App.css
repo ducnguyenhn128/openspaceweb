@@ -7,6 +7,15 @@
   pointer-events: none;
 }
 
+h3 {
+  font-family: 'Roboto Slab', serif;
+}
+
+p {
+  /* font-family: 'Roboto', sans-serif; */
+
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

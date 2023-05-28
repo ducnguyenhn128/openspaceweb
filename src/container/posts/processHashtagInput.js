@@ -17,3 +17,4 @@ const processHashtag = (input) => {
 
 export default processHashtag
 
+//This function: hashtag => array
