@@ -49,7 +49,7 @@ const NewPost = () => {
         formData.append('title', title)
         formData.append('body', body)
         formData.append('createdAt', createdAt)
-        formData.append('tagList', hashtag)   // temporary
+        formData.append('tagList', hashtag)   
         formData.append('img', e.target.elements.img.files[0]);
         // console.log(formData)
         try {

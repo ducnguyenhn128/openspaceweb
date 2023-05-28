@@ -2,7 +2,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 
 import './styles.css'
-import BlockedUser from './utils/actionVsUser';
+import BlockedUser from './actionVsUser';
 import { Row } from 'react-bootstrap';
 
 const Privacy = () => {

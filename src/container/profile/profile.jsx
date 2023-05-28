@@ -18,32 +18,32 @@ const ProfileStas =  () => {
     }, [userID])
     return (  
         <div className="d-flex">
-            <div className="col-9 bg-light">
+            <div className="bg-light">
                 {/* Statistic */}
                 <div className="d-flex d-flex mt-3">  
-                    <div className="profile-stats col-2 bg-secondary mx-3 p-1">
+                    <div className="profile-stats col-3 col-md-2 bg-secondary mx-3 p-1">
                         <h3 className='mb-1'>{stats.posts}</h3>
                         <div>Posts</div>
                     </div>
-                     <div className="profile-stats col-2 bg-secondary mx-3 p-1">
+                     <div className="profile-stats col-3 col-md-2 bg-secondary mx-3 p-1">
                          <h3 className='mb-1'>{stats.follower}</h3>
                          <div>Followers</div>
                      </div>
-                     <div className="profile-stats col-2 bg-secondary mx-3 p-1">
+                     <div className="profile-stats col-3 col-md-2 bg-secondary mx-3 p-1">
                          <h3 className='mb-1'>{stats.following}</h3>
                          <div>Followings</div>
                      </div>
                     
                  </div>
                  {/* Posts  */}
-                 <div className='mt-4 col-md-8'>
+                 <div className='mt-4 '>
                      {/* Recent Post line */}
                      <div className='d-flex justify-content-between mx-2 mb-3'>
                          <h4 className='mx-2'>Recent Posts</h4>    
-                         <Link>See more</Link>
+                         {/* <Link>See more</Link> */}
                      </div>
                      {/* render a list */}
-                     <div className='profile-recent-post'>
+                     <div className='profile-recent-post col-12 col-lg-6'>
                         {recentPost.map((post) => (
                             <li key={post._id}><FeedPost info={post}/></li>
                         ) )}

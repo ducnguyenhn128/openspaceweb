@@ -17,18 +17,19 @@ const Follows = () => {
                 </Form>
 
                 {/* Follows  */}
-                <div className='d-flex'>
+                <div className='d-flex flex-wrap'>
                     {/* Followes */}
-                    <div class='col-6 text-start ms-2'>
+                    <div class='col-12 col-md-4 text-start ms-2'>
                         <h3>Follower: 30</h3>
-                        <FollowUser actionType='Blocked'/>
-                        <FollowUser actionType='Blocked'/>
-                        <FollowUser actionType='Blocked'/>
-                        <FollowUser actionType='Blocked'/>
+                        <FollowUser actionType='block'/>
+                        <FollowUser actionType='block'/>
+                        <FollowUser actionType='block'/>
+                        <FollowUser actionType='block'/>
+                        <FollowUser actionType='block'/>
                     </div>
 
                     {/* Followings */}
-                    <div class='col-6 text-start ms-2'>
+                    <div class=' col-12 col-md-4 text-start ms-2'>
                         <h3>Following: 50</h3>
                         <FollowUser actionType='Unfollow'/>
                         <FollowUser actionType='Unfollow'/>

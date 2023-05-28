@@ -28,7 +28,8 @@ const TagPage = () => {
     ));
     return (  
         <div>
-            <Header />
+            <Header/>
+            <br />
             <div className='allPostsWithTag col-12 col-md-6 mx-auto'>
                 {allPostsWithTag}
             </div>

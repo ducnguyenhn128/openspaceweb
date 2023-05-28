@@ -1,3 +1,9 @@
+
+.profile_main_col {
+    margin-top: 60px;
+    margin-left: 20%;
+}
+
 .profile-stats {
     color: white;
     border-radius: 5px;
@@ -45,4 +51,18 @@
 /* Change Infomation */
 .profile-change-avt {
     margin-top: 30px;
+}
+
+@media (max-width: 1250px) {
+    .profile_main_col {
+      margin-left: 250px;
+    }
+  }
+@media (max-width: 768px) {
+    .profile-prosidebar {
+      display: none; 
+    }
+    .profile_main_col {
+        margin-left: 0;
+    }
 }

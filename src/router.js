@@ -4,7 +4,6 @@ import Register from "./container/register/register";
 import Profile from "./container/profile";
 import Follows from "./container/profile/follows";
 import Password from "./container/profile/password";
-import Privacy from "./container/profile/privacy";
 import MyInfo from "./container/profile/myinfo";
 import ViewPost from "./container/posts/viewpost";
 import LogIn from "./container/login";
@@ -15,7 +14,6 @@ import TagPage from "./container/tag/tag";
 import NewsFeed from './container/newsFeed/newsFeed'
 import Homepage from './container/home/Homepage';
 import Register2 from './utils/DEMO';
-// import ViewPost2 from './container/posts/viewpost2';
 
 const router = createBrowserRouter([
     {
@@ -45,7 +43,7 @@ const router = createBrowserRouter([
       children: [
         {path: 'follows', element: <Follows />},
         {path: 'passwords', element: <Password />},
-        {path: 'privacy', element: <Privacy />},
+        // {path: 'privacy', element: <Privacy />},
         {path: 'myinfo', element: <MyInfo />}
       ]
     },

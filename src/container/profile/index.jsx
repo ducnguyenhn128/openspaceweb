@@ -3,7 +3,7 @@ import { ProSidebarProvider } from 'react-pro-sidebar'
 import './styles.css'
 import { Sidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import Password from './password';
-import Privacy from './privacy';
+import Privacy from './utils/privacy';
 import MyInfo from './myinfo';
 import ProfileStas from './profile';
 import Header from '../header';
@@ -48,7 +48,7 @@ const Profile = () => {
     return (
         <ProSidebarProvider>
             <Header />
-            <Sidebar style={{float: 'left', width: '20%', position: 'fixed', top: '60px'}}>
+            <Sidebar className='profile-prosidebar' style={{float: 'left', width: '20%', position: 'fixed', top: '60px'}}>
                 <Menu>
                     <div>
                         <img src={avatar} alt='avt'  style={{width: '100px', height: '100px',borderRadius: '100%', margin: '20px auto'}} />
@@ -61,12 +61,9 @@ const Profile = () => {
                     
                 </Menu>
             </Sidebar>
-            <main style={{marginTop: '60px', marginLeft: '20%'}}>
+            <main className=' profile_main_col'>
                 <Routes>
-                    <Route path='/*' element={ 
-                        <ProfileStas
-                        />
-                    }/> 
+                    <Route path='/*' element={ <ProfileStas/> }/> 
                     <Route path='/passwords' element={ <Password />} />
                     <Route path='/privacy' element={ <Privacy />} />
                     <Route path='/follows' element={ <Follows/>} />

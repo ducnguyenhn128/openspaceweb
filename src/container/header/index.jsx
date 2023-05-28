@@ -6,6 +6,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MessageIcon from '@mui/icons-material/Message';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
+import CreateIcon from '@mui/icons-material/Create';
 import favicon from '../photo/logoheader1.png'
 
 const Header = () => {
@@ -29,9 +30,9 @@ const Header = () => {
           </div>
 
           <div class='my-auto text-white flex-grow-1 text-end'>
-              <a href='/' class='me-4 text-white fs-3' ><MenuIcon /></a>
-              <a href='/' class='me-4 text-white fs-3'><NotificationsIcon /></a>
-              <a href='/' class='me-4 text-white fs-3'><MessageIcon /></a>
+              {/* <a href='/' class='me-4 text-white fs-3' ><MenuIcon /></a> */}
+              <a href='/post' class='me-4 text-white fs-3'><CreateIcon /></a>
+              {/* <a href='/' class='me-4 text-white fs-3'><MessageIcon /></a> */}
               <a href='/profile' class='me-4 text-white fs-3'><PersonIcon /></a>
               <a href='/logout' class='me-4 text-white fs-3'><LogoutIcon /></a>
           </div>
