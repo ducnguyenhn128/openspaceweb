@@ -6,7 +6,10 @@ const token = localStorage.getItem('token');
 const apiTopCreator = async () => {
     try {
         const response = await axios.get(URL, {
-            withCredentials: true
+            withCredentials: true, 
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         })
         const data = response.data;
         return data;

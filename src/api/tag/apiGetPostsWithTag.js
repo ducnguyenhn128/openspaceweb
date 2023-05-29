@@ -1,4 +1,5 @@
 import axios from "axios";
+const token = localStorage.getItem('token');
 
 const URL0 = process.env.REACT_APP_URL0;
 // const {tag} = useParams();
@@ -8,7 +9,10 @@ const apiGetPostsWithTag = async (tag) => {
     const URL = URL0 + '/tag/' + tag ;  //ex: /tag/sport
     try {
         const response = await axios.get(URL, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
         return response.data;
     } catch (err) {

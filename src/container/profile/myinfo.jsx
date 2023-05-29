@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import React, { useRef, useState } from 'react';
 import './styles.css'
-import apiProfile from '../../api/apiProfile';
+import apiProfile from '../../api/user/apiProfile';
 import apiAvatar from '../../api/user/apiAvatar';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
@@ -75,7 +75,7 @@ const MyInfo = () => {
             </div>
 
             {/* Form change Infomation */}
-            <Form className='col-6 mx-auto my-5 text-start' onSubmit={handleSubmit}>
+            <Form className='col-6 mx-auto my-5 py-4 text-start' onSubmit={handleSubmit}>
                 <Form.Label>Username</Form.Label>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Control type="text" placeholder= {user.username} 

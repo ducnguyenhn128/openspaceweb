@@ -11,7 +11,10 @@ const apiNewsFeed = async (newsFeedGlobal, page) => {
     try {
         const response = await axios.get(URL, {
             withCredentials: true,
-            params: {page: page}
+            params: {page: page}, 
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         })
         
         return response.data

@@ -8,6 +8,9 @@ const apiGetUser = async () => {
     try {
         const response = await axios.get(URL1, {
             withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
         const user = response.data;
         // console.log("Data Response from apiGetUser: ", user);

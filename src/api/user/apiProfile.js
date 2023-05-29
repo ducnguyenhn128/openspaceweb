@@ -16,3 +16,5 @@ const apiProfile = {
 }
 
 export default apiProfile
+
+// This API use to change user Infomation (at profile / myinfo)

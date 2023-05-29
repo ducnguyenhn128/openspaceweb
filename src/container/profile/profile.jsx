@@ -17,40 +17,38 @@ const ProfileStas =  () => {
         fetchData();
     }, [userID])
     return (  
-        <div className="d-flex">
-            <div className="bg-light">
-                {/* Statistic */}
-                <div className="d-flex d-flex mt-3">  
-                    <div className="profile-stats col-3 col-md-2 bg-secondary mx-3 p-1">
-                        <h3 className='mb-1'>{stats.posts}</h3>
-                        <div>Posts</div>
+        <div className='pt-4'>
+            {/* Statistic */}
+            <div className="d-flex d-flex">  
+                <div className="profile-stats col-3 col-lg-2 bg-secondary mx-3 p-1">
+                    <h3 className='mb-1'>{stats.posts}</h3>
+                    <div>Posts</div>
+                </div>
+                    <div className="profile-stats col-3 col-lg-2 bg-secondary mx-3 p-1">
+                        <h3 className='mb-1'>{stats.follower}</h3>
+                        <div>Followers</div>
                     </div>
-                     <div className="profile-stats col-3 col-md-2 bg-secondary mx-3 p-1">
-                         <h3 className='mb-1'>{stats.follower}</h3>
-                         <div>Followers</div>
-                     </div>
-                     <div className="profile-stats col-3 col-md-2 bg-secondary mx-3 p-1">
-                         <h3 className='mb-1'>{stats.following}</h3>
-                         <div>Followings</div>
-                     </div>
-                    
-                 </div>
-                 {/* Posts  */}
-                 <div className='mt-4 '>
-                     {/* Recent Post line */}
-                     <div className='d-flex justify-content-between mx-2 mb-3'>
-                         <h4 className='mx-2'>Recent Posts</h4>    
-                         {/* <Link>See more</Link> */}
-                     </div>
-                     {/* render a list */}
-                     <div className='profile-recent-post col-12 col-lg-6'>
-                        {recentPost.map((post) => (
-                            <li key={post._id}><FeedPost info={post}/></li>
-                        ) )}
-                     </div>
-                 </div>
+                    <div className="profile-stats col-3 col-lg-2 bg-secondary mx-3 p-1">
+                        <h3 className='mb-1'>{stats.following}</h3>
+                        <div>Followings</div>
+                    </div>
                 
-             </div>
+            </div>
+
+            {/* Posts  */}
+            <div className='mt-4 '>
+                {/* Recent Post line */}
+                <div className='d-flex justify-content-between mx-2 mb-3'>
+                    <h4 className='mx-2'>Recent Posts</h4>    
+                    {/* <Link>See more</Link> */}
+                </div>
+                {/* render a list */}
+                <div className='profile-recent-post col-12 col-lg-6'>
+                {recentPost.map((post) => (
+                    <li key={post._id}><FeedPost info={post}/></li>
+                ) )}
+                </div>
+            </div>
             
          </div>
     );

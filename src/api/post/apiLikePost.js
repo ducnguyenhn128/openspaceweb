@@ -8,7 +8,10 @@ const apiLikePost = async (info) => {
     // info: {postID: string, userID: string}
     try {
         const response = await axios.put(URL, info, {
-            withCredentials: true
+            withCredentials: true, 
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
         return response
     } catch(err) {

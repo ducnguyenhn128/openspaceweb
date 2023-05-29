@@ -8,6 +8,9 @@ const apiViewPost = async (id) => {
     try {
         const response = await axios.get(URL, {
             withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         })
         // console.log(response.data)
         const responseData = await response.data;

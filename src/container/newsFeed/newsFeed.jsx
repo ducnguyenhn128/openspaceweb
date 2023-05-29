@@ -67,7 +67,7 @@ const NewsFeed = () => {
                 </div>
                 
                 {/* Center */}
-                <div className='col-12 col-md-4  bg-light'>
+                <div className='col-12 col-md-6 col-xxl-4  bg-light'>
                     {/* Write a post */}
                     <div className='post-article'>
                         <div className='user-avt'>
