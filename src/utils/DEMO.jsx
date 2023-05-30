@@ -6,13 +6,17 @@ import axios from 'axios';
 const Demo = () => {
     const [showSetting, setShowSetting] = useState(false);
     const [searchTerm, setSearchTerm] = useState('')
-    const [searchResult, setSearchResult] = useState([])
+    const [result, setResult] = useState()
     const toggleSetting = () => {
       setShowSetting(!showSetting);
     };
 
     const handleChange = (e) => {
+        setResult()
         setSearchTerm(e.target.value)
+        if (searchTerm === '') {
+            setResult('')
+        }
     }
 
     const handleSubmit = async (e) => {
@@ -24,7 +28,14 @@ const Demo = () => {
                     withCredential: true
                 })
                 console.log(response.data)
-                setSearchResult(response.data)
+
+                const searchResult =  (response.data.length === 0) ?
+                            (<p>Sorry, we can not find any result </p>) :
+                            (response.data.map(el => (
+                                <p key={el._id}>{el.fullname}</p>
+                            )))
+                
+                setResult(searchResult)
             } catch(err) {
                 console.log(err)
             }
@@ -40,11 +51,6 @@ const Demo = () => {
         }
     }
 
-    const result = (searchResult.length === 0)  ? 
-            (<p>Sorry, we can not find any result </p>) :
-            (searchResult.map(el => (
-                <p key={el._id}>{el.fullname}</p>
-            )))
             
     return (  
         <div className='demo'>
@@ -59,6 +65,8 @@ const Demo = () => {
                     Động thái này diễn ra sau khi Ngân hàng Nhà nước giảm trần lãi suất huy động kỳ hạn dưới 6 tháng vào tuần trước.
             </div>
 
+
+
             <form onSubmit={handleSubmit}>
                 <input 
                     onChange= {handleChange}
@@ -67,8 +75,8 @@ const Demo = () => {
                 <input type="submit" />
             </form>
 
-            <div className='search_result'>
-                {result}
+            <div >
+                {(searchTerm !== '') && result}
             </div>
 
         </div>  

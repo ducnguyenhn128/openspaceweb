@@ -1,4 +1,3 @@
-
 body {
     background-color: rgb(241, 241, 241);
 }
@@ -10,10 +9,12 @@ body {
 }
 
 .left_column {
-    width: 300px
+    width: 300px;
+    z-index: 2;
 }
 .right_column * , .left_column *{
     background-color: #F8F9FA;
+
 }
 
 
