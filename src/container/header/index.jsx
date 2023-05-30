@@ -29,7 +29,7 @@ const Header = () => {
               })
               console.log(response.data)
               const searchResultFound = response.data.map(el => (
-                <a href={`/user/${el.id}`} 
+                <a href={`/user/${el._id}`} key={el._id} 
                     className="news-feed-top-creator">
                     <div className="news-feed-top-creator-avt my-auto">
                         <img src={el.avatar} alt='avt' />
