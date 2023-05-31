@@ -7,7 +7,7 @@ import Password from "./container/profile/password";
 import MyInfo from "./container/profile/myinfo";
 import ViewPost from "./container/posts/viewpost";
 import LogIn from "./container/login";
-import User from "./container/user/user";
+import User from "./container/user/";
 import Logout from "./container/login/logout";
 import NewPost from "./container/posts/newpost";
 import TagPage from "./container/tag/tag";

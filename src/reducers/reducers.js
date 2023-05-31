@@ -7,7 +7,8 @@ const initialState = {
     avatar: '',
     _id: '',
     email: '',
-    stats: {posts: '', follower: '', following: ''}
+    stats: {posts: '', follower: '', following: ''},
+    follow: {follower: [], following: []}
   }
 };
 
