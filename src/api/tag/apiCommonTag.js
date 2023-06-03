@@ -3,7 +3,7 @@ const token = localStorage.getItem('token');
 
 // /tag/common
 const URL0 = process.env.REACT_APP_URL0; 
-const URL = process.env.REACT_APP_URL0 + '/tag/%common'
+const URL = process.env.REACT_APP_URL0 + '/tag/common'
 
 const apiCommonTag = async () => {
     const response = await axios.get(URL, {
