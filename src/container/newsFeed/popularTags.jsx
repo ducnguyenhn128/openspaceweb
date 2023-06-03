@@ -17,8 +17,8 @@ const PopularTags = (props) => {
     useEffect(() => {
         const fetchData = async() => {
             try {
-                const data1 = await apiCommonTag();
-                setTaglist(data1)
+                // const data1 = await apiCommonTag();
+                // setTaglist(data1)
 
                 const data2 = await apiGetUser();
                 // await console.log(`data2 : ${data2}`)
