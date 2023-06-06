@@ -4,7 +4,7 @@ const URL = URL0 + '/api/register'
 
 const apiRegister = async (formData) => {
     try {
-        const response = axios.post(URL, formData)
+        const response = await axios.post(URL, formData)
         return response.data
     } catch(err) {
         console.log(err)
