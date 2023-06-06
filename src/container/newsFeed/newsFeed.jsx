@@ -13,6 +13,9 @@ import FeedPost from "./feedPost";
 import PopularTags from "./popularTags";
 import './styles.css'
 import apiNewsFeed from '../../api/post/apiNewsFeed';
+import axios from 'axios';
+const URL0 = process.env.REACT_APP_URL0;
+const URL1 = URL0 + '/api/check-login'
 const NewsFeed = () => {
     const [newsFeedGlobal, setNewsFeedGlobal] = useState(true)
     const navigate = useNavigate()
@@ -50,6 +53,27 @@ const NewsFeed = () => {
                 navigate('/login')
             }
         }
+        
+        const checkLoginStatus = async () => { 
+            try {
+                const response = await axios.get(URL1, {
+                    withCredentials: true // with cookie
+                });
+                console.log(response.data)
+                if (response.data === 'Invalid Token') {
+                    console.log('Not Login');
+                    navigate('/login')
+                } else {
+                    // setLogInState(true);
+                    navigate('/feed')
+                }
+            } catch(err) {
+                console.log(err);
+                navigate('/login')
+            }
+        }
+
+        checkLoginStatus();
         fetchData();
     }, [newsFeedGlobal, navigate])
 

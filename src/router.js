@@ -1,19 +1,18 @@
 
-import { createBrowserRouter} from 'react-router-dom';
-import Register from "./container/register/register";
+import { createBrowserRouter } from 'react-router-dom';
+import Homepage from './container/home/Homepage';
+import LogIn from "./container/login";
+import Logout from "./container/login/logout";
+import NewsFeed from './container/newsFeed/newsFeed';
+import NewPost from "./container/posts/newpost";
+import ViewPost from "./container/posts/viewpost";
 import Profile from "./container/profile";
 import Follows from "./container/profile/follows";
-import Password from "./container/profile/password";
 import MyInfo from "./container/profile/myinfo";
-import ViewPost from "./container/posts/viewpost";
-import LogIn from "./container/login";
-import User from "./container/user/";
-import Logout from "./container/login/logout";
-import NewPost from "./container/posts/newpost";
+import Password from "./container/profile/password";
+import Register from "./container/register/register";
 import TagPage from "./container/tag/tag";
-import NewsFeed from './container/newsFeed/newsFeed'
-import Homepage from './container/home/Homepage';
-import Register2 from './utils/DEMO';
+import User from "./container/user/";
 import Demo from './utils/DEMO';
 
 const router = createBrowserRouter([
