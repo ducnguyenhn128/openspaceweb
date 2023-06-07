@@ -18,10 +18,12 @@ const PopularTags = (props) => {
         const fetchData = async() => {
             try {
                 const data1 = await apiCommonTag();
+                console.log(data1)
                 setTaglist(data1)
 
+
                 const data2 = await apiGetUser();
-                // await console.log(`data2 : ${data2}`)
+                await console.log(`data2 : ${data2}`)
                 //ACTION set State for user & stats
                 dispatch(updateUser(data2))
                 setFullname(data2.fullname)
