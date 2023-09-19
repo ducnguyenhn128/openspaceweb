@@ -3,7 +3,6 @@ import { Link, Route, Routes, useParams, useNavigate } from 'react-router-dom';
 import { ProSidebarProvider,  Sidebar, Menu, MenuItem } from 'react-pro-sidebar'
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
-
 import './styles.css'
 import ProfileStas from '../profile/profile';
 import Header from '../header';
@@ -92,7 +91,7 @@ const User = () => {
     return (
         <ProSidebarProvider totalpost = {totalPosts}>
             <Header />
-            <Sidebar style={{float: 'left', width: '20%'}}>
+            <Sidebar className="user-profile-other-sidebar" style={{float: 'left', width: '20%', position: 'fixed' , top: '60px'}}>
                 <Menu>
                     <div>
                         <img src={user.avatar} alt='avt' 
@@ -109,7 +108,7 @@ const User = () => {
                     </MenuItem>                
                 </Menu>
             </Sidebar>
-            <main style={{marginTop: '60px'}}>
+            <main style={{marginTop: '80px'}}>
                 <Routes>
                     <Route path='/*' element={ 
                         <User2 recentPost={recentPost}/>

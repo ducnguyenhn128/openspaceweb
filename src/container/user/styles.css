@@ -1,0 +1,18 @@
+.user-profile-other-col {
+    margin-left: 20%;
+}
+
+/* 
+@media (max-width: 1250px) {
+    .profile_main_col {
+      margin-left: 250px;
+    }
+} */
+@media (max-width: 768px) {
+    .user-profile-other-sidebar {
+      display: none; 
+    }
+    .user-profile-other-col {
+        margin-left: 0 !important 
+    }
+}
